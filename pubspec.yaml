@@ -1,4 +1,4 @@
-name: flutter_app
+name: CosmiX
 description: CosmiX mobile app built using Flutter for Tech Triathlon by Rootcode
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
@@ -35,6 +35,10 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
+  google_fonts: ^5.1.0
+  path: ^1.8.3
+  path_provider: ^2.1.0
+  get: ^4.6.5
 
 dev_dependencies:
   flutter_test:
