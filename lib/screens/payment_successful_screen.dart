@@ -1,7 +1,5 @@
 import 'package:CosmiX/theme/colors.dart';
 import 'package:CosmiX/widgets/button.dart';
-import 'package:CosmiX/widgets/input_field.dart';
-import 'package:CosmiX/widgets/radio_button.dart';
 import 'package:flutter/material.dart';
 
 class PaymentSuccess extends StatelessWidget {
@@ -28,16 +26,16 @@ class PaymentSuccess extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Column(
+                      const Column(
                         children: [
-                          const Text(
+                          Text(
                             'Order Success',
                             style: TextStyle(
                                 fontSize: 16,
                                 fontWeight: FontWeight.w300,
                                 color: CosmixColor.subTitleTextColor),
                           ),
-                          const Text(
+                          Text(
                             'Payment Successful',
                             style: TextStyle(
                                 fontFamily: 'Gilroy',
@@ -47,21 +45,19 @@ class PaymentSuccess extends StatelessWidget {
                           ),
                         ],
                       ),
-                      Container(
-                        child: Ink(
-                          decoration: BoxDecoration(
-                            color: CosmixColor.primaryColor,
-                            shape: BoxShape.circle,
-                          ),
-                          child: InkWell(
-                            borderRadius: BorderRadius.circular(500.0),
-                            child: Padding(
-                              padding: EdgeInsets.all(20.0),
-                              child: Icon(
-                                Icons.check,
-                                size: 90.0,
-                                color: CosmixColor.white,
-                              ),
+                      Ink(
+                        decoration: const BoxDecoration(
+                          color: CosmixColor.primaryColor,
+                          shape: BoxShape.circle,
+                        ),
+                        child: InkWell(
+                          borderRadius: BorderRadius.circular(500.0),
+                          child: const Padding(
+                            padding: EdgeInsets.all(20.0),
+                            child: Icon(
+                              Icons.check,
+                              size: 90.0,
+                              color: CosmixColor.white,
                             ),
                           ),
                         ),
