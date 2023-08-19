@@ -15,19 +15,31 @@ class MainScreen extends StatelessWidget {
       backgroundColor: CosmixColor.bgColor,
       bottomNavigationBar: ClipRRect(
         // set border radius
-        borderRadius: BorderRadius.only(
+        borderRadius: const BorderRadius.only(
           topLeft: Radius.circular(24.0),
           topRight: Radius.circular(24.0),
         ),
         child: BottomAppBar(
-          color: Colors.black,
+          color: Colors.black.withOpacity(0.8),
           height: 80,
           elevation: 0,
           child: Stack(
             children: [
+              // ClipRRect(
+              //   clipBehavior: Clip.hardEdge,
+              //   borderRadius: BorderRadius.circular(24.0),
+              //   child: BackdropFilter(
+              //     filter: ImageFilter.blur(sigmaX: 8, sigmaY: 8 * 2),
+              //     child: Container(
+              //       decoration: BoxDecoration(
+              //         borderRadius: BorderRadius.circular(24.0),
+              //       ),
+              //     ),
+              //   ),
+              // ),
               Positioned(
                 width: MediaQuery.of(context).size.width,
-                height: 90,
+                height: 120,
                 child: GlassmorphicBorder(
                     strokeWidth: 2,
                     radius: 24,
@@ -35,11 +47,11 @@ class MainScreen extends StatelessWidget {
                       begin: Alignment.topLeft,
                       end: Alignment.topRight,
                       colors: [
-                        CosmixColor.white.withOpacity(0),
+                        CosmixColor.white.withOpacity(0.05),
                         CosmixColor.white.withOpacity(0.3),
                         CosmixColor.white.withOpacity(0.5),
                         CosmixColor.white.withOpacity(0.3),
-                        CosmixColor.white.withOpacity(0),
+                        CosmixColor.white.withOpacity(0.05),
                       ],
                       stops: const [
                         0.0,
@@ -55,27 +67,27 @@ class MainScreen extends StatelessWidget {
                 color: Colors.transparent,
                 padding: const EdgeInsets.only(left: 42, right: 42, top: 21),
                 child: Obx(
-                  () => Row(
+                      () => Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       _bottomAppBarItem(
-                        icon: const Icon(Icons.home).icon,
+                        icon: Icons.home_filled,
                         page: 0,
                         context,
                         label: "Home",
                       ),
                       _bottomAppBarItem(
-                          icon: const Icon(Icons.search).icon,
+                          icon: Icons.search_rounded,
                           page: 1,
                           context,
                           label: "Search"),
-                      _bottomAppBarItem(
-                          icon: const Icon(Icons.dashboard).icon,
+                          _bottomAppBarItem(
+                              icon: Icons.dashboard_rounded,
                           page: 2,
                           context,
                           label: "Widgets"),
-                    ],
-                  ),
+                        ],
+                      ),
                 ),
               )
             ],
@@ -107,7 +119,7 @@ class MainScreen extends StatelessWidget {
                   : CosmixColor.grey,
               size: 26,
             ),
-            SizedBox(height: 6),
+            const SizedBox(height: 6),
             Text(
               label,
               style: TextStyle(
