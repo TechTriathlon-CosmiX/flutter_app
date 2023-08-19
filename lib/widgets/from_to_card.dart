@@ -28,15 +28,16 @@ class FromToCustomCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return ElevatedButton(
       // onTap: onTap,
-      onTap: (){
-        print(fromtotype);
-        print(FromToCardType.from);
-        print(fromtotype == FromToCardType.from);
-        String val = fromtotype == FromToCardType.from ? 'FROM' : 'TO';
-        print(val);
-      },
+      onPressed: onTap,
+      style: ElevatedButton.styleFrom(
+        backgroundColor: Colors.transparent,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10),
+        ),
+        padding: const EdgeInsets.all(0),
+      ),
       child: Container(
         decoration: ShapeDecoration(
           shape: RoundedRectangleBorder(
