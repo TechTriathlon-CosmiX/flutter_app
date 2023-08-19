@@ -1,4 +1,5 @@
 import 'package:CosmiX/screens/buttons_screen.dart';
+import 'package:CosmiX/screens/selectable_planet_screent.dart';
 import 'package:CosmiX/theme/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -32,7 +33,12 @@ class HomeScreen extends StatelessWidget {
                 rightIcon: const Icon(Icons.arrow_forward_ios),
                 type: ButtonType.primary,
                 buttonText: "Cards",
-                onPressed: () => Get.to(() => const CardsScreen())),
+                onPressed: () => Get.to(() => const CardsScreen())),const SizedBox(height: 24),
+            Button(
+                rightIcon: const Icon(Icons.arrow_forward_ios),
+                type: ButtonType.primary,
+                buttonText: "Planets",
+                onPressed: () => Get.to(() => SelectablePlanetsScreen())),
           ],
         )),
       ),

@@ -1,3 +1,4 @@
+import 'package:CosmiX/controllers/selectable_planet_controller.dart';
 import 'package:CosmiX/screens/home_screen.dart';
 import 'package:CosmiX/theme/app_theme.dart';
 import 'package:flutter/material.dart';
@@ -20,11 +21,15 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'CosmiX',
       theme: AppTheme.mainTheme,
       home: const HomeScreen(),
+      initialBinding: BindingsBuilder(() {
+        Get.put(SelectablePlanetsController());
+      }),
     );
   }
 }
