@@ -1,5 +1,6 @@
 import 'package:CosmiX/screens/buttons_screen.dart';
 import 'package:CosmiX/screens/from_to_card_screen.dart';
+import 'package:CosmiX/screens/my_trips_screen.dart';
 import 'package:CosmiX/screens/passenger_input_screen.dart';
 import 'package:CosmiX/screens/selectable_planet_screent.dart';
 import 'package:CosmiX/screens/inputs_screen.dart';
@@ -61,6 +62,12 @@ class HomeScreen extends StatelessWidget {
                 type: ButtonType.primary,
                 buttonText: "Search Filter Page",
                 onPressed: () => Get.to(() => PassengerInputScreen())),
+            const SizedBox(height: 24),
+            Button(
+                rightIcon: const Icon(Icons.arrow_forward_ios),
+                type: ButtonType.primary,
+                buttonText: "My Trips",
+                onPressed: () => Get.to(() => MyTrips())),
           ],
         )),
       ),
