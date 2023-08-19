@@ -8,8 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 
-class PassengerInputScreen extends StatelessWidget {
-  PassengerInputScreen({super.key});
+class SearchAndFilterScreen extends StatelessWidget {
+  SearchAndFilterScreen({super.key});
 
   @override
   Widget build(context) {
