@@ -25,21 +25,21 @@ class CosmixColor {
   static Color shadowColor = CosmixColor.primaryColor.withOpacity(0.4);
 
   static List<Color> lightGradient = [
-    Colors.white.withOpacity(0.3),
-    Colors.white.withOpacity(0.15)
+    CosmixColor.white.withOpacity(0.3),
+    CosmixColor.white.withOpacity(0.1)
   ];
   static List<Color> darkGradient = [
-    Colors.black.withOpacity(0.6),
-    Colors.black.withOpacity(0.3)
+    CosmixColor.black.withOpacity(0.6),
+    CosmixColor.black.withOpacity(0.3)
   ];
   static List<Color> primaryColorGradient = [
     CosmixColor.primaryColor.withOpacity(0.8),
     CosmixColor.primaryColor.withOpacity(0.4)
   ];
   static List<Color> borderGradient = [
-    CosmixColor.white.withOpacity(0.1),
+    CosmixColor.white.withOpacity(0),
     CosmixColor.white.withOpacity(0.5),
-    CosmixColor.white.withOpacity(0.1),
+    CosmixColor.white.withOpacity(0),
   ];
   static List<Color> transparentGradient = [
     CosmixColor.white.withOpacity(0),

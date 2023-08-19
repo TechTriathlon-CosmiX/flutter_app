@@ -9,6 +9,7 @@ class Button extends StatelessWidget {
   final double height;
   final double width;
   final double fontSize;
+  final FontWeight fontWeight;
   final double iconSize;
   final Color borderColor;
   final Color color;
@@ -27,6 +28,7 @@ class Button extends StatelessWidget {
     this.height = 55,
     this.width = double.infinity,
     this.fontSize = 16,
+    this.fontWeight = FontWeight.normal,
     this.iconSize = 21,
     this.borderColor = CosmixColor.lightWhite,
     this.color = CosmixColor.white,
@@ -105,8 +107,7 @@ class Button extends StatelessWidget {
                           ? CosmixColor.lighterWhite
                           : color,
                       fontSize: fontSize,
-                      fontFamily: 'Gilroy-SemiBold',
-                      fontWeight: FontWeight.w400,
+                      fontWeight: fontWeight,
                     ),
                   ),
                 ),

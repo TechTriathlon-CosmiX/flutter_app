@@ -1,7 +1,7 @@
 import 'package:CosmiX/controllers/main_screen_controller.dart';
 import 'package:CosmiX/controllers/passenger_input_controller.dart';
 import 'package:CosmiX/controllers/selectable_planet_controller.dart';
-import 'package:CosmiX/screens/main_screen.dart';
+import 'package:CosmiX/screens/welcome_screen.dart';
 import 'package:CosmiX/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -41,7 +41,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'CosmiX',
       theme: AppTheme.mainTheme,
-      home: MainScreen(),
+      home: const WelcomeScreen(),
       initialBinding: BindingsBuilder(() {
         Get.put(SelectablePlanetsController());
         Get.put(PassengerController());
