@@ -6,6 +6,9 @@ class CosmixColor {
   static const Color secondaryColor = Color(0xFFD6B07C);
   static const Color accentColor = Color(0xFFD6B07C);
 
+  static const Color white = Colors.white;
+  static const Color lightWhite = Color(0x77FFFFFF);
+  static const Color lighterWhite = Color(0x44FFFFFF);
   static const Color black = Colors.black;
   static const Color lightBlack = Colors.black87;
   static const Color grey = Color(0xFFA8A8A8);
@@ -16,4 +19,7 @@ class CosmixColor {
   static const Color titleTextColor = Colors.white;
   static const Color subTitleTextColor = Colors.white70;
   static Color bgColor = const Color(0xFF131318);
+  static Color shadowGrey = const Color(0x333E404D);
+  static Color shadowGreyDark = const Color(0x113E404D);
+  static Color shadowColor = CosmixColor.primaryColor.withOpacity(0.4);
 }
