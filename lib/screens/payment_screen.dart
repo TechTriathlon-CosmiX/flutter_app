@@ -46,7 +46,6 @@ class PaymentScreen extends StatelessWidget {
                           const Text(
                             '10 MILLION USD',
                             style: TextStyle(
-                                fontFamily: 'Gilroy',
                                 fontSize: 24,
                                 fontWeight: FontWeight.w400,
                                 color: CosmixColor.primaryColor),

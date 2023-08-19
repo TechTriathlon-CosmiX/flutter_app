@@ -38,7 +38,7 @@ class PaymentSuccess extends StatelessWidget {
                           Text(
                             'Payment Successful',
                             style: TextStyle(
-                                fontFamily: 'Gilroy',
+                              
                                 fontSize: 24,
                                 fontWeight: FontWeight.w400,
                                 color: CosmixColor.primaryColor),

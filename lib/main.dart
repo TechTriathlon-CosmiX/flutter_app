@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'CosmiX',
       theme: AppTheme.mainTheme,
-      home: const PaymentSuccess(),
+      home: const HomeScreen(),
     );
   }
 }
