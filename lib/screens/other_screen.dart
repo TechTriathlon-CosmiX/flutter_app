@@ -11,6 +11,27 @@ class OtherScreen extends StatelessWidget {
   @override
   Widget build(context){
     // Access the updated count variable
-    return Scaffold(body: Center(child: Text("${c.count}")));
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Other Screen'),
+        centerTitle: true,
+        actions: [
+          IconButton(
+            icon: const CircleAvatar(
+              backgroundColor: Colors.grey,
+              radius: 25,
+              child: CircleAvatar(
+                backgroundImage: AssetImage('lib/assets/profile-pic.jpeg'),
+                radius: 15,
+              ),
+            ),
+            onPressed: (){
+              // Get.to(ProfileScreen());
+            },
+          ),
+        ],
+      ),
+      body: Center(child: Text("${c.count}"))
+    );
   }
 }
