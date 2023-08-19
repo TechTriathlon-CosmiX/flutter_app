@@ -1,5 +1,6 @@
 import 'package:CosmiX/screens/home_screen.dart';
 import 'package:CosmiX/screens/payment_screen.dart';
+import 'package:CosmiX/screens/payment_successful_screen.dart';
 import 'package:CosmiX/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -25,7 +26,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'CosmiX',
       theme: AppTheme.mainTheme,
-      home: const PaymentScreen(),
+      home: const PaymentSuccess(),
     );
   }
 }
