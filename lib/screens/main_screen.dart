@@ -27,7 +27,7 @@ class MainScreen extends StatelessWidget {
             children: [
               Positioned(
                 width: MediaQuery.of(context).size.width,
-                height: 86,
+                height: 90,
                 child: GlassmorphicBorder(
                     strokeWidth: 2,
                     radius: 24,
@@ -43,9 +43,9 @@ class MainScreen extends StatelessWidget {
                       ],
                       stops: const [
                         0.0,
-                        0.1,
+                        0.2,
                         0.5,
-                        0.9,
+                        0.8,
                         1.0,
                       ],
                     )),
@@ -53,7 +53,7 @@ class MainScreen extends StatelessWidget {
               Container(
                 alignment: Alignment.bottomCenter,
                 color: Colors.transparent,
-                padding: const EdgeInsets.only(left: 42, right: 42, top: 22),
+                padding: const EdgeInsets.only(left: 42, right: 42, top: 21),
                 child: Obx(
                   () => Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
