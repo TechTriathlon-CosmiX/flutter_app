@@ -9,21 +9,21 @@ class PaymentScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController nameController = new TextEditingController();
-    TextEditingController accountNoController = new TextEditingController();
-    TextEditingController expireDateController = new TextEditingController();
-    TextEditingController cvcController = new TextEditingController();
+    TextEditingController nameController =  TextEditingController();
+    TextEditingController accountNoController =  TextEditingController();
+    TextEditingController expireDateController =  TextEditingController();
+    TextEditingController cvcController =  TextEditingController();
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        title: Text(
+        title:const  Text(
           'Payment',
         ),
         backgroundColor: CosmixColor.bgColor,
       ),
       backgroundColor: CosmixColor.bgColor,
       body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 24.0, vertical: 36.0),
+        padding:const EdgeInsets.symmetric(horizontal: 24.0, vertical: 36.0),
         child: Center(
           child: Column(
             children: [
@@ -32,14 +32,14 @@ class PaymentScreen extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      Text(
+                     const Text(
                         'Total Amount',
                         style: TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.w300,
                             color: CosmixColor.subTitleTextColor),
                       ),
-                      Text(
+                      const Text(
                         '10 MILLION USD',
                         style: TextStyle(
                             fontFamily: 'Gilroy',
@@ -47,16 +47,16 @@ class PaymentScreen extends StatelessWidget {
                             fontWeight: FontWeight.w400,
                             color: CosmixColor.primaryColor),
                       ),
-                      Center(child: RadioField()),
+                     const  Center(child: RadioField()),
                       InputField(
                         labelText: "Card Holders Name",
                         controller: nameController,
-                        leadingIcon: Icon(Icons.account_box_rounded),
+                        leadingIcon: const Icon(Icons.account_box_rounded),
                       ),
                       InputField(
                         labelText: "Card Number",
                         controller: accountNoController,
-                        leadingIcon: Icon(Icons.card_membership_rounded),
+                        leadingIcon: const Icon(Icons.card_membership_rounded),
                       ),
                       Row(
                         children: [
@@ -64,17 +64,17 @@ class PaymentScreen extends StatelessWidget {
                             child: InputField(
                               labelText: "Expire Date",
                               controller: expireDateController,
-                              leadingIcon: Icon(Icons.calendar_month_rounded),
+                              leadingIcon: const Icon(Icons.calendar_month_rounded),
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 20,
                           ),
                           Expanded(
                             child: InputField(
                               labelText: "CVV",
                               controller: cvcController,
-                              leadingIcon: Icon(Icons.lock_outline_rounded),
+                              leadingIcon: const Icon(Icons.lock_outline_rounded),
                             ),
                           ),
                         ],
