@@ -2,6 +2,9 @@ import 'package:CosmiX/widgets/button.dart';
 import 'package:CosmiX/widgets/glass_button.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import 'login_screen.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});
@@ -44,6 +47,7 @@ class WelcomeScreen extends StatelessWidget {
                             "Your Inter-planetary",
                             textAlign: TextAlign.left,
                             style: TextStyle(
+                              letterSpacing: -0.5,
                               fontSize: 30,
                               fontWeight: FontWeight.w400,
                               color: Colors.white,
@@ -54,6 +58,7 @@ class WelcomeScreen extends StatelessWidget {
                             "Travel Partner",
                             textAlign: TextAlign.left,
                             style: TextStyle(
+                              letterSpacing: -0.5,
                               fontSize: 48,
                               fontWeight: FontWeight.w600,
                               color: Colors.white,
@@ -67,9 +72,7 @@ class WelcomeScreen extends StatelessWidget {
                     ),
                     GlassButton(
                       onPressed: () {
-                        if (kDebugMode) {
-                          print("Get Started clicked");
-                        }
+                        Get.to(() => const LoginScreen());
                       },
                       buttonText: "Get Started",
                       type: ButtonType.primary,

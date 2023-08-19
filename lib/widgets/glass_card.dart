@@ -18,7 +18,7 @@ class GlassCard extends StatelessWidget {
     super.key,
     required this.child,
     required this.type, // Initialize the child widget
-    this.blur = 14,
+    this.blur = 12,
     this.showShadow = true,
     this.showBorder = true,
     this.borderRadius = 10,
