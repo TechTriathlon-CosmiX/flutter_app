@@ -1,4 +1,5 @@
 import 'package:CosmiX/theme/colors.dart';
+import 'package:CosmiX/widgets/glass_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -41,6 +42,31 @@ class ButtonsScreen extends StatelessWidget {
                 type: ButtonType.disabled,
                 buttonText: "Disabled",
                 onPressed: () => Get.back()),
+            const SizedBox(height: 24),
+            Divider(
+              color: CosmixColor.white.withOpacity(0.3),
+              thickness: 1,
+            ),
+            const SizedBox(height: 24),
+            GlassButton(
+                onPressed: () => Get.back(),
+                buttonText: "Primary Glass",
+                type: ButtonType.primary),
+            const SizedBox(height: 24),
+            GlassButton(
+                onPressed: () => Get.back(),
+                buttonText: "Secondary Glass",
+                type: ButtonType.secondary),
+            const SizedBox(height: 24),
+            GlassButton(
+                onPressed: () => Get.back(),
+                buttonText: "Primary Color Glass",
+                type: ButtonType.primaryColor),
+            const SizedBox(height: 24),
+            GlassButton(
+                onPressed: () => Get.back(),
+                buttonText: "Disabled Glass",
+                type: ButtonType.disabled),
           ],
         )),
       ),
