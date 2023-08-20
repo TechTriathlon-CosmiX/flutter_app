@@ -14,7 +14,7 @@ class CosmixColor {
   static const Color lighterBlack = Colors.black45;
   static const Color grey = Color(0xFFA8A8A8);
   static const Color lightGrey = Color(0xFFF1F2F6);
-  static const Color darkGrey = Color(0xFF625f6a);
+  static const Color darkGrey = Color(0xFF625f6a);                  
   static const Color darkBlue = Color(0xFF4465A8);
 
   static const Color titleTextColor = Colors.white;
