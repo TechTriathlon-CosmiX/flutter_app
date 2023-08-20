@@ -27,6 +27,7 @@ class _BoardingPassScreenState extends State<BoardingPassScreen> {
   Widget _buildFrontContent() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         // ... (front side content)
         const Padding(
@@ -415,6 +416,7 @@ class _BoardingPassScreenState extends State<BoardingPassScreen> {
                   },
                   child: GlassCard(
                     type: CardType.light,
+                    height: 250,
                     child:
                         isFlipped ? _buildBackContent() : _buildFrontContent(),
                   ),
