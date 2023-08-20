@@ -1,5 +1,11 @@
+import 'package:CosmiX/screens/payment_screen.dart';
+import 'package:CosmiX/theme/colors.dart';
+import 'package:CosmiX/widgets/button.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
 class SpaceshipScreen extends StatelessWidget {
-  const SpaceshipScreen({super.key});
+  SpaceshipScreen({super.key});
 
   final List<String> facilitiesList = ['Gym', 'Swimming Pool', 'Spa and Saloon', '24/7 Convince Store','Kids Play Area']; //get facility list
 
