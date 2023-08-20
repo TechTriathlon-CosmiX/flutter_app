@@ -4,23 +4,25 @@ import 'package:flutter/material.dart';
 class DescField extends StatelessWidget {
   final Icon? leadingIcon;
   final Color color;
+  final Color fillColor;
   final String labelText;
   final bool obscureText;
   final TextEditingController controller;
 
   const DescField({
     super.key,
+    required this.labelText,
+    required this.controller,
     this.leadingIcon,
     this.color = CosmixColor.white,
-    required this.labelText,
+    this.fillColor = CosmixColor.lighterBlack,
     this.obscureText = false,
-    required this.controller,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 97,
+      height: 92,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
         color: CosmixColor.lighterWhite,
@@ -32,9 +34,10 @@ class DescField extends StatelessWidget {
         obscureText: obscureText,
         style: TextStyle(
           color: color, // Change the text color here
-          fontSize: 16.0,
+          fontSize: 15.0,
         ),
         decoration: InputDecoration(
+          fillColor: fillColor,
           prefixIcon: leadingIcon != null
               ? Icon(
                   leadingIcon?.icon,
@@ -45,7 +48,7 @@ class DescField extends StatelessWidget {
           floatingLabelStyle: const TextStyle(
               color: CosmixColor.lighterWhite,
               fontWeight: FontWeight.bold,
-              fontSize: 16),
+              fontSize: 15),
           enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12),
               borderSide: const BorderSide(color: CosmixColor.lightWhite)),

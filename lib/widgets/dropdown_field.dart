@@ -4,34 +4,44 @@ import 'package:flutter/material.dart';
 class DropdownField extends StatelessWidget {
   final Icon? leadingIcon;
   final Color color;
+  final Color fillColor;
   final String labelText;
   final bool obscureText;
   final List<DropdownMenuItem> items;
 
   const DropdownField(
       {super.key,
+      required this.labelText,
       this.leadingIcon,
       this.color = CosmixColor.white,
-      required this.labelText,
+      this.fillColor = CosmixColor.lighterBlack,
       this.obscureText = false,
       required this.items});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 56,
+      height: 60,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
         color: CosmixColor.lighterWhite,
       ),
       child: DropdownButtonFormField(
-        borderRadius: BorderRadius.circular(12),
-        focusColor: Colors.black,
+          elevation: 0,
+          iconEnabledColor: CosmixColor.white,
+          icon: Icon(
+            Icons.arrow_drop_down,
+            color: color,
+          ),
+          iconSize: 24,
+          borderRadius: BorderRadius.circular(12),
+          focusColor: CosmixColor.lighterBlack,
           style: TextStyle(
             color: color, // Change the text color here
-            fontSize: 17.0,
+            fontSize: 15.0,
           ),
           decoration: InputDecoration(
+            fillColor: fillColor,
             prefixIcon: leadingIcon != null
                 ? Icon(
                     leadingIcon?.icon,
@@ -42,18 +52,18 @@ class DropdownField extends StatelessWidget {
             floatingLabelStyle: const TextStyle(
                 color: CosmixColor.lighterWhite,
                 fontWeight: FontWeight.bold,
-                fontSize: 16),
+                fontSize: 15),
             enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(12),
                 borderSide: const BorderSide(color: CosmixColor.lightWhite)),
             focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(12),
-                borderSide: const BorderSide(color: CosmixColor.secondaryColor)),
+                borderSide:
+                    const BorderSide(color: CosmixColor.secondaryColor)),
             filled: true,
             label: Text(labelText, style: TextStyle(color: color)),
             hintStyle: const TextStyle(color: CosmixColor.white),
           ),
-          elevation: 0,
           items: items,
           dropdownColor: CosmixColor.lightBlack,
           onChanged: (value) {}),
