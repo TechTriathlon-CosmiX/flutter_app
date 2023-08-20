@@ -10,15 +10,40 @@ import 'package:get/get.dart';
 
 enum BottomSheetInitiatorType {fromButton, toButton, departureTime, arrivalTime}
 
-class BottomSheetPanel extends StatelessWidget {
+class BottomSheetPanel extends StatefulWidget {
   final TextEditingController controller;
-  final PlanetController _planetController = Get.find();
   final BottomSheetInitiatorType initiator;
   BottomSheetPanel({super.key, required this.controller, required this.initiator});
 
   @override
+  State<BottomSheetPanel> createState() => _BottomSheetPanelState();
+}
+
+class _BottomSheetPanelState extends State<BottomSheetPanel> {
+  final PlanetController _planetController = Get.find();
+  List<TravelLocation> _travelLocations = [];
+  // filter method
+  List<TravelLocation> filterSpaceports(String input) {
+    final lowerCaseInput = input.toLowerCase();
+    return _planetController.planets.where((spaceport) {
+      final lowerCasePlanetName = spaceport.planetName.toLowerCase();
+      final lowerCasePortName = spaceport.portName.toLowerCase();
+      // uncomment if you want to filter the spaceport as well
+      // return lowerCasePlanetName.contains(lowerCaseInput) ||
+      //     lowerCasePortName.contains(lowerCaseInput);
+      return lowerCasePlanetName.contains(lowerCaseInput);
+    }).toList();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _travelLocations = _planetController.planets;
+  }
+
+  @override
   Widget build(BuildContext context) {
-    if(initiator == BottomSheetInitiatorType.fromButton || initiator == BottomSheetInitiatorType.toButton) {
+    if(widget.initiator == BottomSheetInitiatorType.fromButton || widget.initiator == BottomSheetInitiatorType.toButton) {
       return Container(
           decoration: BoxDecoration(
             color: CosmixColor.black.withOpacity(0.75),
@@ -57,7 +82,12 @@ class BottomSheetPanel extends StatelessWidget {
                     InputField(
                       labelText: 'Search Spaceports ...',
                       leadingIcon: const Icon(Icons.search_rounded),
-                      controller: controller,
+                      controller: widget.controller,
+                      onChanged: (input){
+                        setState(() {
+                          _travelLocations = filterSpaceports(input);
+                        });
+                      },
                     ),
                     const SizedBox(height: 16),
                     const Text('SPACEPORT NETWORK', style: TextStyle(color: CosmixColor.lighterWhite, fontFamily: CosmixFont.fontFamily, fontSize: 12)),
@@ -66,31 +96,34 @@ class BottomSheetPanel extends StatelessWidget {
                       child: ListView.builder(
                         itemCount: _planetController.planets.length,
                         itemBuilder: (context, index) {
-                          return Column(
-                            children: [
-                              ClipRRect(
-                                borderRadius: BorderRadius.circular(10),
-                                child: ElevatedButton(
-                                  style: ButtonStyle(
-                                    backgroundColor: MaterialStateProperty.all<
-                                            Color>(
-                                        CosmixColor.black.withOpacity(0.75)),
+                          return Visibility(
+                            visible: _travelLocations.contains(_planetController.planets[index]),
+                            child: Column(
+                              children: [
+                                ClipRRect(
+                                  borderRadius: BorderRadius.circular(10),
+                                  child: ElevatedButton(
+                                    style: ButtonStyle(
+                                      backgroundColor: MaterialStateProperty.all<
+                                              Color>(
+                                          CosmixColor.black.withOpacity(0.75)),
+                                    ),
+                                    onPressed: () {
+                                      // Handle the item click here.
+                                      _planetController.changePlanet(widget.initiator,
+                                          _planetController.planets[index]);
+                                      Navigator.pop(context);
+                                    },
+                                    child: SpacePort(
+                                        travelLocation:
+                                            _planetController.planets[index]),
                                   ),
-                                  onPressed: () {
-                                    // Handle the item click here.
-                                    _planetController.changePlanet(initiator,
-                                        _planetController.planets[index]);
-                                    Navigator.pop(context);
-                                  },
-                                  child: SpacePort(
-                                      travelLocation:
-                                          _planetController.planets[index]),
                                 ),
-                              ),
-                              Divider(
-                                  color: CosmixColor.lightGrey.withOpacity(0.2),
-                                  thickness: 1.5),
-                            ],
+                                Divider(
+                                    color: CosmixColor.lightGrey.withOpacity(0.2),
+                                    thickness: 1.5),
+                              ],
+                            ),
                           );
                         },
                       ),
@@ -101,7 +134,7 @@ class BottomSheetPanel extends StatelessWidget {
             ),
           )
       );
-    }else if(initiator == BottomSheetInitiatorType.departureTime || initiator == BottomSheetInitiatorType.arrivalTime){
+    }else if(widget.initiator == BottomSheetInitiatorType.departureTime || widget.initiator == BottomSheetInitiatorType.arrivalTime){
       DateTime dateTime = DateTime.now();
       return Container(
         decoration: BoxDecoration(
@@ -138,13 +171,13 @@ class BottomSheetPanel extends StatelessWidget {
                     initialDateTime: dateTime,
                     mode: CupertinoDatePickerMode.dateAndTime,
                     onDateTimeChanged: (dateTime) => {
-                      if(initiator == BottomSheetInitiatorType.departureTime || initiator == BottomSheetInitiatorType.arrivalTime)
+                      if(widget.initiator == BottomSheetInitiatorType.departureTime || widget.initiator == BottomSheetInitiatorType.arrivalTime)
                       {
                           _planetController
                           .
                           changeDepartureTime
                           (
-                          initiator,
+                          widget.initiator,
                           dateTime)
                       }
                     },
@@ -188,12 +221,12 @@ class SpacePort extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(travelLocation.planetName,
-                  style: TextStyle(
+                  style: const TextStyle(
                       fontFamily: CosmixFont.fontFamily,
                       color: CosmixColor.titleTextColor,
                       fontSize: 16)),
               Text(travelLocation.portName,
-                  style: TextStyle(
+                  style: const TextStyle(
                       fontFamily: CosmixFont.fontFamily,
                       color: CosmixColor.primaryColor)),
               const SizedBox(height: 8),

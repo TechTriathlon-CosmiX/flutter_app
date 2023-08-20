@@ -8,6 +8,7 @@ class InputField extends StatelessWidget {
   final String labelText;
   final bool obscureText;
   final TextEditingController controller;
+  final void Function(String)? onChanged;
 
   const InputField({
     super.key,
@@ -17,6 +18,7 @@ class InputField extends StatelessWidget {
     this.color = CosmixColor.white,
     this.fillColor = CosmixColor.lighterBlack,
     this.obscureText = false,
+    this.onChanged,
   });
 
   @override
@@ -28,6 +30,7 @@ class InputField extends StatelessWidget {
         color: CosmixColor.lighterWhite,
       ),
       child: TextField(
+        onChanged: onChanged != null ? (value) => onChanged!(value) : null,
         controller: controller,
         obscureText: obscureText,
         style: TextStyle(
