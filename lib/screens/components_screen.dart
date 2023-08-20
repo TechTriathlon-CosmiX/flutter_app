@@ -3,6 +3,7 @@ import 'package:CosmiX/screens/from_to_card_screen.dart';
 import 'package:CosmiX/screens/inputs_screen.dart';
 import 'package:CosmiX/screens/my_trips_screen.dart';
 import 'package:CosmiX/screens/payment_screen.dart';
+import 'package:CosmiX/screens/boarding_pass.dart';
 import 'package:CosmiX/screens/search_and_filter_screen.dart';
 import 'package:CosmiX/screens/selectable_planet_screent.dart';
 import 'package:CosmiX/screens/space_lines.dart';
@@ -83,6 +84,12 @@ class ComponentsScreen extends StatelessWidget {
                   type: ButtonType.primary,
                   buttonText: "Payment Screen",
                   onPressed: () => Get.to(() => PaymentScreen())),
+              const SizedBox(height: 24),
+              Button(
+                  rightIcon: const Icon(Icons.arrow_forward_ios),
+                  type: ButtonType.primary,
+                  buttonText: "Boarding Pass",
+                  onPressed: () => Get.to(() => BoardingPassScreen())),
             ],
           )),
         ),
