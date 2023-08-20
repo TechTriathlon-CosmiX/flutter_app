@@ -34,11 +34,11 @@ class PassengerInputRow extends StatelessWidget {
                   }
                 },
               ),
-              SizedBox(
+              const SizedBox(
                 width: 10,
               ),
-              Obx(() => Text(count.toString(), style: const TextStyle(color: CosmixColor.white, fontFamily: CosmixFont.fontFamily, fontSize: 16),)),
-              SizedBox(
+              Obx(() => SizedBox(width: 20, child: Center(child: Text(count.toString(), style: const TextStyle(color: CosmixColor.white, fontFamily: CosmixFont.fontFamily, fontSize: 16),)))),
+              const SizedBox(
               width: 10,
               ),
               IconButton(
@@ -54,4 +54,5 @@ class PassengerInputRow extends StatelessWidget {
       ),
     );
   }
+
 }

@@ -1,5 +1,6 @@
 import 'package:CosmiX/controllers/passenger_input_controller.dart';
 import 'package:CosmiX/theme/colors.dart';
+import 'package:CosmiX/widgets/bottom_sheet_panel.dart';
 import 'package:CosmiX/widgets/button.dart';
 import 'package:CosmiX/widgets/card.dart';
 import 'package:CosmiX/widgets/passenger_input.dart';
@@ -8,8 +9,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 
-class PassengerInputScreen extends StatelessWidget {
-  PassengerInputScreen({super.key});
+enum BottomSheetType {locationList, timeInput}
+
+class SearchAndFilterScreen extends StatelessWidget {
+  SearchAndFilterScreen({super.key});
 
   @override
   Widget build(context) {
@@ -52,4 +55,6 @@ class PassengerInputScreen extends StatelessWidget {
       ),
     );
   }
+
+
 }
