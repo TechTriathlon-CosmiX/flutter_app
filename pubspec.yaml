@@ -43,6 +43,7 @@ dependencies:
   iconify_flutter: ^0.0.5
   flutter_keyboard_visibility: ^5.4.1
   solar_icons: ^0.0.5
+  shared_preferences: ^2.2.0
 
 dev_dependencies:
   flutter_test:

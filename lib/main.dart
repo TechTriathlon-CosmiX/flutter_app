@@ -3,6 +3,8 @@ import 'package:CosmiX/controllers/passenger_input_controller.dart';
 import 'package:CosmiX/controllers/planet_controller.dart';
 import 'package:CosmiX/controllers/selectable_planet_controller.dart';
 import 'package:CosmiX/screens/welcome_screen.dart';
+import 'package:CosmiX/services/api_service.dart';
+import 'package:CosmiX/services/auth_service.dart';
 import 'package:CosmiX/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -25,6 +27,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Get.put(MainController());
+    Get.put(AuthService());
+    Get.put(ApiService());
 
     // Force portrait mode
     SystemChrome.setPreferredOrientations([
