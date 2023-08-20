@@ -1,3 +1,4 @@
+import 'package:CosmiX/services/api_service.dart';
 import 'package:CosmiX/widgets/bottom_sheet_panel.dart';
 import 'package:get/get.dart';
 
@@ -11,7 +12,24 @@ extension PassengerTypeExtension on PassengerType {
 }
 
 class BookingFilterController extends GetxController {
-  final List<TravelLocation> planets = [TravelLocation('Venus','E Space launch #2 - CA, USA'),
+  final ApiService _apiService = ApiService();
+
+  // @override // fetch possible travel locations from back end on initialization
+  // void onInit() {
+  //   super.onInit();
+  //   fetchTravelLocations();
+  // }
+
+  Future<void> fetchTravelLocations() async {
+    try {
+      final List<TravelLocation> locations = await _apiService.fetchTravelLocations();
+      planets = locations;
+    } catch (e) {
+      // Handle error, e.g., show a toast or error message
+    }
+  }
+
+  List<TravelLocation> planets = [TravelLocation('Venus','E Space launch #2 - CA, USA'),
     TravelLocation('Earth','E Space launch #2 - CA, USA'),
     TravelLocation('Mars','E Space launch #2 - CA, USA'),
     TravelLocation('Jupiter','E Space launch #2 - CA, USA'),
@@ -92,4 +110,18 @@ class TravelLocation{
   String portName;
 
   TravelLocation(this.planetName, this.portName);
+
+  factory TravelLocation.fromJson(Map<String, dynamic> json) {
+    return TravelLocation(
+      json['planetName'],
+      json['portName'],
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'planetName': planetName,
+      'portName': portName,
+    };
+  }
 }
