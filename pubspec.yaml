@@ -75,6 +75,7 @@ flutter:
     - assets/images/backgrounds/
     - assets/images/trip_card_images/
     - assets/images/spaceships/
+    - assets/images/homepage/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
