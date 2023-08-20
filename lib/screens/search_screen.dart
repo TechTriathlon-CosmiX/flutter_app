@@ -1,8 +1,9 @@
-import 'package:CosmiX/theme/colors.dart';
 import 'package:flutter/material.dart';
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+import '../theme/colors.dart';
+
+class SearchScreen extends StatelessWidget {
+  const SearchScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +14,7 @@ class HomeScreen extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: 24.0, vertical: 32.0),
           child: Center(
             child: Text(
-              "Home Screen",
+              "Search Screen",
               style: TextStyle(color: CosmixColor.white, fontSize: 24),
             ),
           ),

@@ -1,7 +1,7 @@
 import 'package:CosmiX/theme/colors.dart';
 import 'package:flutter/material.dart';
 
-class InputField extends StatelessWidget {
+class DescField extends StatelessWidget {
   final Icon? leadingIcon;
   final Color color;
   final Color fillColor;
@@ -9,7 +9,7 @@ class InputField extends StatelessWidget {
   final bool obscureText;
   final TextEditingController controller;
 
-  const InputField({
+  const DescField({
     super.key,
     required this.labelText,
     required this.controller,
@@ -22,12 +22,14 @@ class InputField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 54,
+      height: 92,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
         color: CosmixColor.lighterWhite,
       ),
       child: TextField(
+        minLines: 3,
+        maxLines: 3,
         controller: controller,
         obscureText: obscureText,
         style: TextStyle(
