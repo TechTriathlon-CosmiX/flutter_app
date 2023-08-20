@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 class InputField extends StatelessWidget {
   final Icon? leadingIcon;
   final Color color;
+  final double height;
   final Color fillColor;
   final String labelText;
   final bool obscureText;
@@ -15,6 +16,7 @@ class InputField extends StatelessWidget {
     required this.controller,
     this.leadingIcon,
     this.color = CosmixColor.white,
+    this.height = 54,
     this.fillColor = CosmixColor.lighterBlack,
     this.obscureText = false,
   });
@@ -22,7 +24,7 @@ class InputField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 54,
+      height: height,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
         color: CosmixColor.lighterWhite,
@@ -38,8 +40,9 @@ class InputField extends StatelessWidget {
           fillColor: fillColor,
           prefixIcon: leadingIcon != null
               ? Icon(
-                  leadingIcon?.icon,
+            leadingIcon?.icon,
                   color: color,
+                  size: 22,
                 )
               : null,
           floatingLabelBehavior: FloatingLabelBehavior.auto,
