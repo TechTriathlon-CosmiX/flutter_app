@@ -1,3 +1,4 @@
+import 'package:CosmiX/screens/space_lines.dart';
 import 'package:CosmiX/theme/colors.dart';
 import 'package:CosmiX/widgets/button.dart';
 import 'package:CosmiX/widgets/card.dart';
@@ -46,7 +47,7 @@ class SearchAndFilterScreen extends StatelessWidget {
                 leftIcon: const Icon(Icons.search_rounded),
                 fontSize: 17,
                 buttonText: "Search for flights",
-                onPressed: () => Get.back()),
+                onPressed: () => Get.to(() => const SpaceLines())),
           ],
         )),
       ),

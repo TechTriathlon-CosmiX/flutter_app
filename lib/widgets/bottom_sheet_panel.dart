@@ -169,31 +169,10 @@ class _BottomSheetPanelState extends State<BottomSheetPanel> {
                       dateTimePickerTextStyle: TextStyle(color: CosmixColor.white),
                     ),
                   ),
-                  // child: Obx(() {
-                  //   DateTime dateTime = DateTime.now();
-                  //   if(widget.initiator == BottomSheetInitiatorType.departureTime && _bookingFilterController.departureTime != null){
-                  //     dateTime = _bookingFilterController.departureTime!.value;
-                  //   }else if(widget.initiator == BottomSheetInitiatorType.arrivalTime && _bookingFilterController.arrivalTime != null){
-                  //     dateTime = _bookingFilterController.arrivalTime!.value;
-                  //   }
-                  //   return CupertinoDatePicker(
-                  //     initialDateTime: dateTime,
-                  //     mode: CupertinoDatePickerMode.dateAndTime,
-                  //     onDateTimeChanged: (dateTime) => {
-                  //       if(widget.initiator == BottomSheetInitiatorType.departureTime || widget.initiator == BottomSheetInitiatorType.arrivalTime)
-                  //         {
-                  //           _bookingFilterController
-                  //               .
-                  //           changeDepartureTime
-                  //             (
-                  //               widget.initiator,
-                  //               dateTime)
-                  //         }
-                  //     },
-                  //   );
-                  // }),
+
                     child: CupertinoDatePicker(
-                      initialDateTime: dateTime,
+                      minimumDate: DateTime.now(),
+                      initialDateTime: DateTime.now(),
                       mode: CupertinoDatePickerMode.dateAndTime,
                       onDateTimeChanged: (dateTime) => {
                         if(widget.initiator == BottomSheetInitiatorType.departureTime || widget.initiator == BottomSheetInitiatorType.arrivalTime)
