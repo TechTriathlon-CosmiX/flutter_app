@@ -37,21 +37,9 @@ class FromToCustomCard extends StatelessWidget {
         ),
         padding: const EdgeInsets.all(0),
       ),
-      child: Container(
-        decoration: ShapeDecoration(
-          shape: RoundedRectangleBorder(
-            side: const BorderSide(
-              width: 1,
-              strokeAlign: BorderSide.strokeAlignCenter,
-              color: CosmixColor.lightWhite,
-            ),
-            borderRadius: BorderRadius.circular(10),
-          ),
-        ),
-        child: CustomCard(
-          type: type,
-          child: FromToChild(fromtotype: fromtotype, location: location,description: description,),
-        ),
+      child: CustomCard(
+        type: type,
+        child: FromToChild(fromtotype: fromtotype, location: location,description: description,),
       ),
     );
   }

@@ -1,6 +1,5 @@
 import 'dart:ui';
-
-import 'package:CosmiX/controllers/planet_controller.dart';
+import 'package:CosmiX/controllers/booking_filter_controller.dart';
 import 'package:CosmiX/theme/colors.dart';
 import 'package:CosmiX/theme/fonts.dart';
 import 'package:CosmiX/widgets/button.dart';
@@ -13,7 +12,7 @@ enum BottomSheetInitiatorType {fromButton, toButton, departureTime, arrivalTime}
 
 class BottomSheetPanel extends StatelessWidget {
   final TextEditingController controller;
-  final PlanetController _planetController = Get.find();
+  final BookingFilterController _bookingFilterController = Get.find();
   final BottomSheetInitiatorType initiator;
   BottomSheetPanel({super.key, required this.controller, required this.initiator});
 
@@ -65,7 +64,7 @@ class BottomSheetPanel extends StatelessWidget {
                     const SizedBox(height: 16),
                     Expanded(
                       child: ListView.builder(
-                        itemCount: _planetController.planets.length,
+                        itemCount: _bookingFilterController.planets.length,
                         itemBuilder: (context, index) {
                           return Column(
                             children: [
@@ -79,13 +78,13 @@ class BottomSheetPanel extends StatelessWidget {
                                   ),
                                   onPressed: () {
                                     // Handle the item click here.
-                                    _planetController.changePlanet(initiator,
-                                        _planetController.planets[index]);
+                                    _bookingFilterController.changePlanet(initiator,
+                                        _bookingFilterController.planets[index]);
                                     Navigator.pop(context);
                                   },
                                   child: SpacePort(
                                       travelLocation:
-                                          _planetController.planets[index]),
+                                      _bookingFilterController.planets[index]),
                                 ),
                               ),
                               Divider(
@@ -106,7 +105,7 @@ class BottomSheetPanel extends StatelessWidget {
       DateTime dateTime = DateTime.now();
       return Container(
         decoration: BoxDecoration(
-          color: CosmixColor.black.withOpacity(0.5),
+          color: CosmixColor.black.withOpacity(0.85),
           borderRadius: const BorderRadius.only(
             topLeft: Radius.circular(16),
             topRight: Radius.circular(16),
@@ -130,7 +129,7 @@ class BottomSheetPanel extends StatelessWidget {
               SizedBox(
                 height: 180,
                 child: CupertinoTheme(
-                  data: CupertinoThemeData(
+                  data: const CupertinoThemeData(
                     textTheme: CupertinoTextThemeData(
                       dateTimePickerTextStyle: TextStyle(color: CosmixColor.white),
                     ),
@@ -141,7 +140,7 @@ class BottomSheetPanel extends StatelessWidget {
                     onDateTimeChanged: (dateTime) => {
                       if(initiator == BottomSheetInitiatorType.departureTime || initiator == BottomSheetInitiatorType.arrivalTime)
                       {
-                          _planetController
+                        _bookingFilterController
                           .
                           changeDepartureTime
                           (
@@ -152,7 +151,7 @@ class BottomSheetPanel extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(height: 20,),
+              const SizedBox(height: 20,),
               Button(type: ButtonType.primary, buttonText: 'Done',onPressed: (){
                 Navigator.pop(context);
               },)
@@ -189,12 +188,12 @@ class SpacePort extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(travelLocation.planetName,
-                  style: TextStyle(
+                  style: const TextStyle(
                       fontFamily: CosmixFont.fontFamily,
                       color: CosmixColor.titleTextColor,
                       fontSize: 16)),
               Text(travelLocation.portName,
-                  style: TextStyle(
+                  style: const TextStyle(
                       fontFamily: CosmixFont.fontFamily,
                       color: CosmixColor.primaryColor)),
               const SizedBox(height: 8),

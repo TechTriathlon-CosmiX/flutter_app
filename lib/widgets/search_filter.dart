@@ -1,25 +1,25 @@
-import 'package:CosmiX/controllers/passenger_input_controller.dart';
-import 'package:CosmiX/controllers/planet_controller.dart';
+import 'package:CosmiX/controllers/booking_filter_controller.dart';
 import 'package:CosmiX/screens/search_and_filter_screen.dart';
 import 'package:CosmiX/widgets/bottom_sheet_panel.dart';
 import 'package:CosmiX/widgets/button.dart';
 import 'package:CosmiX/widgets/card.dart';
 import 'package:CosmiX/widgets/from_to_card.dart';
+import 'package:CosmiX/widgets/glass_button.dart';
 import 'package:CosmiX/widgets/passenger_input.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class SearchFilter extends StatelessWidget {
   SearchFilter({super.key});
-  final PassengerController passengerController = Get.find();
-  final PlanetController planetController = Get.find();
+  // final PassengerController passengerController = Get.find();
+  final BookingFilterController _bookingFilterController = Get.find();
   @override
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         Obx(() {
-            Rx<TravelLocation> travelLocationfrom = planetController.filterFromSpacePort;
+            Rx<TravelLocation> travelLocationfrom = _bookingFilterController.filterFromSpacePort;
             return FromToCustomCard(type: CardType.light, fromtotype: FromToCardType.from, onTap: (){
               _showCustomBottomSheet(context, BottomSheetType.locationList, BottomSheetInitiatorType.fromButton);
             }, location: travelLocationfrom.value.planetName, description: travelLocationfrom.value.portName);
@@ -27,7 +27,7 @@ class SearchFilter extends StatelessWidget {
         ),
         const SizedBox(height: 16),
         Obx(() {
-          Rx<TravelLocation> travelLocationto = planetController.filterToSpacePort;
+          Rx<TravelLocation> travelLocationto = _bookingFilterController.filterToSpacePort;
           return FromToCustomCard(type: CardType.light, fromtotype: FromToCardType.to, onTap: (){
             _showCustomBottomSheet(context, BottomSheetType.locationList, BottomSheetInitiatorType.toButton);
           }, location: travelLocationto.value.planetName, description: travelLocationto.value.portName);
@@ -38,7 +38,7 @@ class SearchFilter extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Expanded(
-              child: Button(
+              child: GlassButton(
                   fontSize: 14,
                   leftIcon: const Icon(Icons.calendar_month_rounded),
                   type: ButtonType.secondary,
@@ -50,7 +50,7 @@ class SearchFilter extends StatelessWidget {
             ),
             const SizedBox(width: 20),
             Expanded(
-              child: Button(
+              child: GlassButton(
                   fontSize: 14,
                   leftIcon: const Icon(Icons.calendar_month_rounded),
                   type: ButtonType.secondary,
@@ -67,16 +67,16 @@ class SearchFilter extends StatelessWidget {
           children: [
             PassengerInputRow(
               type: PassengerType.adult,
-              count: passengerController.adultCount,
-              controller: passengerController,
+              count: _bookingFilterController.adultCount,
+              controller: _bookingFilterController,
             ),PassengerInputRow(
               type: PassengerType.children,
-              count: passengerController.childrenCount,
-              controller: passengerController,
+              count: _bookingFilterController.childrenCount,
+              controller: _bookingFilterController,
             ),PassengerInputRow(
               type: PassengerType.infant,
-              count: passengerController.infantCount,
-              controller: passengerController,
+              count: _bookingFilterController.infantCount,
+              controller: _bookingFilterController,
             ),
           ],
         )

@@ -1,7 +1,16 @@
 import 'package:CosmiX/widgets/bottom_sheet_panel.dart';
 import 'package:get/get.dart';
 
-class PlanetController extends GetxController {
+enum PassengerType { adult, children, infant }
+
+extension PassengerTypeExtension on PassengerType {
+  String get label {
+    return toString().split('.').last[0].toUpperCase() +
+        toString().split('.').last.substring(1);
+  }
+}
+
+class BookingFilterController extends GetxController {
   final List<TravelLocation> planets = [TravelLocation('Venus','E Space launch #2 - CA, USA'),
     TravelLocation('Earth','E Space launch #2 - CA, USA'),
     TravelLocation('Mars','E Space launch #2 - CA, USA'),
@@ -14,6 +23,25 @@ class PlanetController extends GetxController {
   Rx<TravelLocation> filterToSpacePort = TravelLocation('Earth','E Space launch #2 - CA, USA').obs;
   Rx<DateTime> departureTime = DateTime.now().obs;
   Rx<DateTime> arrivalTime = DateTime.now().obs;
+  var adultCount = 0.obs;
+  var childrenCount = 0.obs;
+  var infantCount = 0.obs;
+
+  void updateCounts(PassengerType type, int value) {
+    switch (type) {
+      case PassengerType.adult:
+        adultCount(value);
+        break;
+      case PassengerType.children:
+        childrenCount(value);
+        break;
+      case PassengerType.infant:
+        infantCount(value);
+        break;
+    }
+
+    update();
+  }
 
   void changePlanet(BottomSheetInitiatorType initiator, TravelLocation spacePort) {
     switch (initiator) {
