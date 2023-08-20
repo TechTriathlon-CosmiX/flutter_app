@@ -94,7 +94,9 @@ class PaymentScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         Button(
-                            onPressed: () {},
+                            onPressed: () {
+                              Get.to(() => PaymentSuccess());
+                            },
                             buttonText: "Pay",
                             type: ButtonType.primaryColor)
                       ]))
