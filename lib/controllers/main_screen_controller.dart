@@ -23,7 +23,7 @@ class MainController extends GetxController {
     Get.changeThemeMode(mode);
   }
 
-  void goToTab(int page) {
+  void goToTab(int page) { 
     // give haptic feedback
     HapticFeedback.mediumImpact();
 

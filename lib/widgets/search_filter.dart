@@ -102,7 +102,7 @@ class SearchFilter extends StatelessWidget {
                   .height;
               var targetHeight = isKeyboardOpen
                   ? screenHeight * 0.85
-                  : screenHeight * 0.5;
+                  : screenHeight * 0.75;
               if(initiator == BottomSheetInitiatorType.departureTime || initiator == BottomSheetInitiatorType.arrivalTime){
                 targetHeight = isKeyboardOpen
                   ? screenHeight * 0.6
