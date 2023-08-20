@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 
 class SelectablePlanetsScreen extends StatelessWidget {
   final SelectablePlanetsController controller = Get.find();
+
   SelectablePlanetsScreen({super.key});
 
   @override
@@ -26,6 +27,7 @@ class SelectablePlanetsScreen extends StatelessWidget {
       // Replace the 8 lines Navigator.push by a simple Get.to(). You don't need context
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 36.0),
+
         child: GetX<SelectablePlanetsController>(builder: (context) {
           return GridView.builder(
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -40,6 +42,7 @@ class SelectablePlanetsScreen extends StatelessWidget {
             },
           );
         }),
+
       ),
     );
   }

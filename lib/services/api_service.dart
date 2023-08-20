@@ -1,11 +1,15 @@
-import 'dart:convert';
+import 'package:get/get_connect.dart';
 
-import 'package:CosmiX/util/constants.dart';
-import 'package:http/http.dart' as http;
-import 'package:CosmiX/controllers/booking_filter_controller.dart';
+class ApiService extends GetConnect {
+  // Define the base URL here
+  final baseUrl = 'http://localhost:3001/api';
 
+  Future<Response> registerUser(Map<String, dynamic> data) async {
+    return post('$baseUrl/auth/register', data);
+  }
 
-class ApiService {
+  Future<Response> loginUser(Map<String, dynamic> data) async {
+    return post('$baseUrl/auth/login', data);
 
   Future<List<TravelLocation>> fetchTravelLocations() async {
     final response = await http.get(Uri.parse('$baseUrl/spaceports'));
