@@ -85,6 +85,11 @@ class _BottomSheetPanelState extends State<BottomSheetPanel> {
                       labelText: 'Search Spaceports ...',
                       leadingIcon: const Icon(Icons.search_rounded),
                       controller: widget.controller,
+                      onChanged: (input){
+                        setState(() {
+                          _travelLocations = filterSpaceports(input);
+                        });
+                      },
                     ),
                     const SizedBox(height: 16),
                     const Text('SPACEPORT NETWORK', style: TextStyle(color: CosmixColor.lighterWhite, fontFamily: CosmixFont.fontFamily, fontSize: 12)),
@@ -135,7 +140,7 @@ class _BottomSheetPanelState extends State<BottomSheetPanel> {
       DateTime dateTime = DateTime.now();
       return Container(
         decoration: BoxDecoration(
-          color: CosmixColor.black.withOpacity(0.5),
+          color: CosmixColor.black.withOpacity(0.85),
           borderRadius: const BorderRadius.only(
             topLeft: Radius.circular(16),
             topRight: Radius.circular(16),
@@ -159,29 +164,52 @@ class _BottomSheetPanelState extends State<BottomSheetPanel> {
               SizedBox(
                 height: 180,
                 child: CupertinoTheme(
-                  data: CupertinoThemeData(
+                  data: const CupertinoThemeData(
                     textTheme: CupertinoTextThemeData(
                       dateTimePickerTextStyle: TextStyle(color: CosmixColor.white),
                     ),
                   ),
-                  child: CupertinoDatePicker(
-                    initialDateTime: dateTime,
-                    mode: CupertinoDatePickerMode.dateAndTime,
-                    onDateTimeChanged: (dateTime) => {
-                      if(widget.initiator == BottomSheetInitiatorType.departureTime || widget.initiator == BottomSheetInitiatorType.arrivalTime)
-                      {
-                          _bookingFilterController
-                          .
-                          changeDepartureTime
-                          (
-                          widget.initiator,
-                          dateTime)
-                      }
-                    },
-                  ),
+                  // child: Obx(() {
+                  //   DateTime dateTime = DateTime.now();
+                  //   if(widget.initiator == BottomSheetInitiatorType.departureTime && _bookingFilterController.departureTime != null){
+                  //     dateTime = _bookingFilterController.departureTime!.value;
+                  //   }else if(widget.initiator == BottomSheetInitiatorType.arrivalTime && _bookingFilterController.arrivalTime != null){
+                  //     dateTime = _bookingFilterController.arrivalTime!.value;
+                  //   }
+                  //   return CupertinoDatePicker(
+                  //     initialDateTime: dateTime,
+                  //     mode: CupertinoDatePickerMode.dateAndTime,
+                  //     onDateTimeChanged: (dateTime) => {
+                  //       if(widget.initiator == BottomSheetInitiatorType.departureTime || widget.initiator == BottomSheetInitiatorType.arrivalTime)
+                  //         {
+                  //           _bookingFilterController
+                  //               .
+                  //           changeDepartureTime
+                  //             (
+                  //               widget.initiator,
+                  //               dateTime)
+                  //         }
+                  //     },
+                  //   );
+                  // }),
+                    child: CupertinoDatePicker(
+                      initialDateTime: dateTime,
+                      mode: CupertinoDatePickerMode.dateAndTime,
+                      onDateTimeChanged: (dateTime) => {
+                        if(widget.initiator == BottomSheetInitiatorType.departureTime || widget.initiator == BottomSheetInitiatorType.arrivalTime)
+                          {
+                            _bookingFilterController
+                                .
+                            changeDepartureTime
+                              (
+                                widget.initiator,
+                                dateTime)
+                          }
+                      },
+                    ),
                 ),
               ),
-              SizedBox(height: 20,),
+              const SizedBox(height: 20,),
               Button(type: ButtonType.primary, buttonText: 'Done',onPressed: (){
                 Navigator.pop(context);
               },)

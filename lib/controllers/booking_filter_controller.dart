@@ -21,11 +21,18 @@ class BookingFilterController extends GetxController {
     ];
   Rx<TravelLocation> filterFromSpacePort = TravelLocation('Earth','E Space launch #2 - CA, USA').obs;
   Rx<TravelLocation> filterToSpacePort = TravelLocation('Earth','E Space launch #2 - CA, USA').obs;
-  Rx<DateTime> departureTime = DateTime.now().obs;
-  Rx<DateTime> arrivalTime = DateTime.now().obs;
+  Rx<DateTime>? departureTime = DateTime.now().obs;
+  Rx<DateTime>? arrivalTime = DateTime.now().obs;
+
+  Rx<String>? departureDateAsText;
+  Rx<String>? departureTimeAsText;
+  Rx<String>? arrivalDateAsText;
+  Rx<String>? arrivalTimeAsText;
+
   var adultCount = 0.obs;
   var childrenCount = 0.obs;
   var infantCount = 0.obs;
+
 
   void updateCounts(PassengerType type, int value) {
     switch (type) {
@@ -61,15 +68,21 @@ class BookingFilterController extends GetxController {
   changeDepartureTime(BottomSheetInitiatorType initiator, DateTime dateTime) {
     switch (initiator) {
       case BottomSheetInitiatorType.departureTime:
-        departureTime(dateTime);
+        departureTime = dateTime.obs;
+        departureDateAsText = "${departureTime!.value.year}-${departureTime!.value.month.toString().padLeft(2, '0')}-${departureTime!.value.day.toString().padLeft(2, '0')}".obs;
+        departureTimeAsText = "${departureTime!.value.hour.toString().padLeft(2, '0')}:${departureTime!.value.minute.toString().padLeft(2, '0')}".obs;
         break;
       case BottomSheetInitiatorType.arrivalTime:
-        arrivalTime(dateTime);
+        arrivalTime = dateTime.obs;
+        arrivalDateAsText = "${arrivalTime!.value.year}-${arrivalTime!.value.month.toString().padLeft(2, '0')}-${arrivalTime!.value.day.toString().padLeft(2, '0')}".obs;
+        arrivalTimeAsText = "${arrivalTime!.value.hour.toString().padLeft(2, '0')}:${arrivalTime!.value.minute.toString().padLeft(2, '0')}".obs;
         break;
       default:
         break;
     }
 
+    // print(dateTime);
+    print(departureDateAsText);
     update();
   }
 }

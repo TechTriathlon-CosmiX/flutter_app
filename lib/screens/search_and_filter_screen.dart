@@ -26,7 +26,7 @@ class SearchAndFilterScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             GlassCard(
-                height: 460,
+                height: 500,
                 borderRadius: 16,
                 type: CardType.dark,
                 child: Padding(
