@@ -47,7 +47,7 @@ class SearchAndFilterScreen extends StatelessWidget {
                 leftIcon: const Icon(Icons.search_rounded),
                 fontSize: 17,
                 buttonText: "Search for flights",
-                onPressed: () => Get.to(() => const SpaceLines())),
+                onPressed: () => Get.to(() =>  SpaceLines())),
           ],
         )),
       ),
