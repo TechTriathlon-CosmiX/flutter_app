@@ -1,5 +1,6 @@
 import 'package:CosmiX/controllers/date_time_formatter.dart';
 import 'package:CosmiX/controllers/space_lines_controller.dart';
+import 'package:CosmiX/screens/spaceship_details.dart';
 import 'package:CosmiX/theme/colors.dart';
 import 'package:CosmiX/widgets/button.dart';
 import 'package:CosmiX/widgets/card.dart';
@@ -113,7 +114,7 @@ class SpacelineCard extends StatelessWidget {
                       color: CosmixColor.white),
                 ),
                 Button(
-                  onPressed: () {},
+                  onPressed: () => Get.to(() => SpaceshipScreen()),
                   buttonText: "From $cost million onwards",
                   type: ButtonType.secondary,
                   rightIcon: Icon(Icons.arrow_forward_ios_rounded),

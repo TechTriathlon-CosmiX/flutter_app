@@ -1,3 +1,5 @@
+import 'package:CosmiX/models/flight.dart';
+import 'package:CosmiX/models/planet.dart';
 import 'package:CosmiX/services/api_service.dart';
 import 'package:CosmiX/widgets/bottom_sheet_panel.dart';
 import 'package:get/get.dart';
@@ -14,33 +16,68 @@ extension PassengerTypeExtension on PassengerType {
 class BookingFilterController extends GetxController {
   final ApiService _apiService = ApiService();
 
-  // @override // fetch possible travel locations from back end on initialization
-  // void onInit() {
-  //   super.onInit();
-  //   fetchTravelLocations();
-  // }
+  @override // fetch possible travel locations from back end on initialization
+  void onInit() {
+    super.onInit();
+    fetchTravelLocations();
+  }
 
   Future<void> fetchTravelLocations() async {
     try {
-      final List<TravelLocation> locations = await _apiService.fetchTravelLocations();
-      planets = locations;
+      planets = await _apiService.fetchAllPlanets();
     } catch (e) {
       // Handle error, e.g., show a toast or error message
     }
   }
 
-  List<TravelLocation> planets = [TravelLocation('Venus','E Space launch #2 - CA, USA'),
-    TravelLocation('Earth','E Space launch #2 - CA, USA'),
-    TravelLocation('Mars','E Space launch #2 - CA, USA'),
-    TravelLocation('Jupiter','E Space launch #2 - CA, USA'),
-    TravelLocation('Saturn','E Space launch #2 - CA, USA'),
-    TravelLocation('Uranus','E Space launch #2 - CA, USA'),
-    TravelLocation('Neptune','E Space launch #2 - CA, USA'),
+  List<Planet> planets = [
+    Planet(planetId: '1',
+      planetName: 'Venus',
+      planetImage: 'venus',
+      planetDescription: 'E Space launch #2 - CA, USA'),
+    Planet(planetId: '2',
+      planetName: 'Earth',
+      planetImage: 'earth',
+      planetDescription: 'E Space launch #2 - CA, USA'),
+    Planet(planetId: '3',
+      planetName: 'Mars',
+      planetImage: 'mars',
+      planetDescription: 'E Space launch #2 - CA, USA'),
+    Planet(planetId: '4',
+      planetName: 'Jupiter',
+      planetImage: 'jupiter',
+      planetDescription: 'E Space launch #2 - CA, USA'),
+    Planet(planetId: '5',
+        planetName: 'Saturn',
+        planetImage: 'saturn',
+        planetDescription: 'E Space launch #2 - CA, USA'),
+    Planet(planetId: '6',
+      planetName: 'Uranus',
+      planetImage: 'uranus',
+      planetDescription: 'E Space launch #2 - CA, USA'),
+    Planet(planetId: '7',
+      planetName: 'Neptune',
+      planetImage: 'neptune',
+      planetDescription: 'E Space launch #2 - CA, USA'),
     ];
-  Rx<TravelLocation> filterFromSpacePort = TravelLocation('Earth','E Space launch #2 - CA, USA').obs;
-  Rx<TravelLocation> filterToSpacePort = TravelLocation('Earth','E Space launch #2 - CA, USA').obs;
+
+  Rx<Planet> filterFromSpacePort = Planet(planetId: '2',
+      planetName: 'Earth',
+      planetImage: 'earth',
+      planetDescription: 'E Space launch #2 - CA, USA').obs;
+  Rx<Planet> filterToSpacePort = Planet(planetId: '2',
+      planetName: 'Earth',
+      planetImage: 'earth',
+      planetDescription: 'E Space launch #2 - CA, USA').obs;
   Rx<DateTime>? departureTime = DateTime.now().obs;
   Rx<DateTime>? arrivalTime = DateTime.now().obs;
+
+  Rx<String>? selectedFlightId;
+  Rx<List<String>>? selectedCabinIds;
+  Rx<int> additionalLuggageCapacity = 0.obs;
+  Rx<double> additionalLuggageCharge = 0.0.obs;
+  Rx<double> netValue = 0.0.obs;
+  Rx<double> paymentAmount = 0.0.obs;
 
   Rx<String>? departureDateAsText;
   Rx<String>? departureTimeAsText;
@@ -51,6 +88,34 @@ class BookingFilterController extends GetxController {
   var childrenCount = 0.obs;
   var infantCount = 0.obs;
 
+  Future<bool> makeBooking() async {
+    try {
+      bool success = await _apiService.postBooking(
+        // Provide the required parameters
+        placedTime: DateTime.now(),
+        adultCount: adultCount.value,
+        childCount: childrenCount.value,
+        additionalRemarks: 'Additional remarks here',
+        additionalLuggageCapacity: 2,
+        additionalLuggageCharge: 20.0,
+        netValue: 250.0,
+        flightId: selectedFlightId!.value,
+        cabinIds: selectedCabinIds!.value,
+        paymentAmount: 300.0,
+      );
+
+      if (success) {
+        // Handle success
+        return true;
+      } else {
+        // Handle failure
+        return false;
+      }
+    } catch (error) {
+      // Handle exceptions or errors
+      return false;
+    }
+  }
 
   void updateCounts(PassengerType type, int value) {
     switch (type) {
@@ -68,13 +133,13 @@ class BookingFilterController extends GetxController {
     update();
   }
 
-  void changePlanet(BottomSheetInitiatorType initiator, TravelLocation spacePort) {
+  void changePlanet(BottomSheetInitiatorType initiator, Planet planet) {
     switch (initiator) {
       case BottomSheetInitiatorType.toButton:
-        filterToSpacePort(spacePort);
+        filterToSpacePort(planet);
         break;
       case BottomSheetInitiatorType.fromButton:
-        filterFromSpacePort(spacePort);
+        filterFromSpacePort(planet);
         break;
       default:
         break;
@@ -102,26 +167,5 @@ class BookingFilterController extends GetxController {
     // print(dateTime);
     print(departureDateAsText);
     update();
-  }
-}
-
-class TravelLocation{
-  String planetName;
-  String portName;
-
-  TravelLocation(this.planetName, this.portName);
-
-  factory TravelLocation.fromJson(Map<String, dynamic> json) {
-    return TravelLocation(
-      json['planetName'],
-      json['portName'],
-    );
-  }
-
-  Map<String, dynamic> toJson() {
-    return {
-      'planetName': planetName,
-      'portName': portName,
-    };
   }
 }

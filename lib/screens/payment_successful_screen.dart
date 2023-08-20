@@ -1,6 +1,9 @@
+import 'package:CosmiX/screens/main_screen.dart';
+import 'package:CosmiX/screens/my_trips_screen.dart';
 import 'package:CosmiX/theme/colors.dart';
 import 'package:CosmiX/widgets/button.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class PaymentSuccess extends StatelessWidget {
   const PaymentSuccess({super.key});
@@ -70,7 +73,9 @@ class PaymentSuccess extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         Button(
-                            onPressed: () {},
+                            onPressed: () {
+                              Get.to(() => MainScreen());
+                            },
                             buttonText: "Go to your orders",
                             type: ButtonType.primaryColor)
                       ]))
