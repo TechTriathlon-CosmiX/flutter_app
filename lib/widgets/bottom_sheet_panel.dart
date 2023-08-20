@@ -1,4 +1,5 @@
 import 'dart:ui';
+
 import 'package:CosmiX/controllers/booking_filter_controller.dart';
 import 'package:CosmiX/theme/colors.dart';
 import 'package:CosmiX/theme/fonts.dart';
@@ -10,15 +11,41 @@ import 'package:get/get.dart';
 
 enum BottomSheetInitiatorType {fromButton, toButton, departureTime, arrivalTime}
 
-class BottomSheetPanel extends StatelessWidget {
+class BottomSheetPanel extends StatefulWidget {
   final TextEditingController controller;
-  final BookingFilterController _bookingFilterController = Get.find();
+  // final BookingFilterController _bookingFilterController = Get.find();
   final BottomSheetInitiatorType initiator;
   BottomSheetPanel({super.key, required this.controller, required this.initiator});
 
   @override
+  State<BottomSheetPanel> createState() => _BottomSheetPanelState();
+}
+
+class _BottomSheetPanelState extends State<BottomSheetPanel> {
+  final BookingFilterController _bookingFilterController = Get.find();
+  List<TravelLocation> _travelLocations = [];
+  // filter method
+  List<TravelLocation> filterSpaceports(String input) {
+    final lowerCaseInput = input.toLowerCase();
+    return _bookingFilterController.planets.where((spaceport) {
+      final lowerCasePlanetName = spaceport.planetName.toLowerCase();
+      final lowerCasePortName = spaceport.portName.toLowerCase();
+      // uncomment if you want to filter the spaceport as well
+      // return lowerCasePlanetName.contains(lowerCaseInput) ||
+      //     lowerCasePortName.contains(lowerCaseInput);
+      return lowerCasePlanetName.contains(lowerCaseInput);
+    }).toList();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _travelLocations = _bookingFilterController.planets;
+  }
+
+  @override
   Widget build(BuildContext context) {
-    if(initiator == BottomSheetInitiatorType.fromButton || initiator == BottomSheetInitiatorType.toButton) {
+    if(widget.initiator == BottomSheetInitiatorType.fromButton || widget.initiator == BottomSheetInitiatorType.toButton) {
       return Container(
           decoration: BoxDecoration(
             color: CosmixColor.black.withOpacity(0.75),
@@ -57,7 +84,7 @@ class BottomSheetPanel extends StatelessWidget {
                     InputField(
                       labelText: 'Search Spaceports ...',
                       leadingIcon: const Icon(Icons.search_rounded),
-                      controller: controller,
+                      controller: widget.controller,
                     ),
                     const SizedBox(height: 16),
                     const Text('SPACEPORT NETWORK', style: TextStyle(color: CosmixColor.lighterWhite, fontFamily: CosmixFont.fontFamily, fontSize: 12)),
@@ -66,7 +93,9 @@ class BottomSheetPanel extends StatelessWidget {
                       child: ListView.builder(
                         itemCount: _bookingFilterController.planets.length,
                         itemBuilder: (context, index) {
-                          return Column(
+                          return Visibility(
+                            visible: _travelLocations.contains(_bookingFilterController.planets[index]),
+                            child: Column(
                             children: [
                               ClipRRect(
                                 borderRadius: BorderRadius.circular(10),
@@ -78,7 +107,7 @@ class BottomSheetPanel extends StatelessWidget {
                                   ),
                                   onPressed: () {
                                     // Handle the item click here.
-                                    _bookingFilterController.changePlanet(initiator,
+                                    _bookingFilterController.changePlanet(widget.initiator,
                                         _bookingFilterController.planets[index]);
                                     Navigator.pop(context);
                                   },
@@ -91,6 +120,7 @@ class BottomSheetPanel extends StatelessWidget {
                                   color: CosmixColor.lightGrey.withOpacity(0.2),
                                   thickness: 1.5),
                             ],
+                          ),
                           );
                         },
                       ),
@@ -101,11 +131,11 @@ class BottomSheetPanel extends StatelessWidget {
             ),
           )
       );
-    }else if(initiator == BottomSheetInitiatorType.departureTime || initiator == BottomSheetInitiatorType.arrivalTime){
+    }else if(widget.initiator == BottomSheetInitiatorType.departureTime || widget.initiator == BottomSheetInitiatorType.arrivalTime){
       DateTime dateTime = DateTime.now();
       return Container(
         decoration: BoxDecoration(
-          color: CosmixColor.black.withOpacity(0.85),
+          color: CosmixColor.black.withOpacity(0.5),
           borderRadius: const BorderRadius.only(
             topLeft: Radius.circular(16),
             topRight: Radius.circular(16),
@@ -129,7 +159,7 @@ class BottomSheetPanel extends StatelessWidget {
               SizedBox(
                 height: 180,
                 child: CupertinoTheme(
-                  data: const CupertinoThemeData(
+                  data: CupertinoThemeData(
                     textTheme: CupertinoTextThemeData(
                       dateTimePickerTextStyle: TextStyle(color: CosmixColor.white),
                     ),
@@ -138,20 +168,20 @@ class BottomSheetPanel extends StatelessWidget {
                     initialDateTime: dateTime,
                     mode: CupertinoDatePickerMode.dateAndTime,
                     onDateTimeChanged: (dateTime) => {
-                      if(initiator == BottomSheetInitiatorType.departureTime || initiator == BottomSheetInitiatorType.arrivalTime)
+                      if(widget.initiator == BottomSheetInitiatorType.departureTime || widget.initiator == BottomSheetInitiatorType.arrivalTime)
                       {
-                        _bookingFilterController
+                          _bookingFilterController
                           .
                           changeDepartureTime
                           (
-                          initiator,
+                          widget.initiator,
                           dateTime)
                       }
                     },
                   ),
                 ),
               ),
-              const SizedBox(height: 20,),
+              SizedBox(height: 20,),
               Button(type: ButtonType.primary, buttonText: 'Done',onPressed: (){
                 Navigator.pop(context);
               },)
@@ -188,12 +218,12 @@ class SpacePort extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(travelLocation.planetName,
-                  style: const TextStyle(
+                  style: TextStyle(
                       fontFamily: CosmixFont.fontFamily,
                       color: CosmixColor.titleTextColor,
                       fontSize: 16)),
               Text(travelLocation.portName,
-                  style: const TextStyle(
+                  style: TextStyle(
                       fontFamily: CosmixFont.fontFamily,
                       color: CosmixColor.primaryColor)),
               const SizedBox(height: 8),
