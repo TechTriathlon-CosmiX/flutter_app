@@ -1,13 +1,22 @@
+import 'package:CosmiX/controllers/date_formatter.dart';
+import 'package:CosmiX/controllers/trips_controller.dart';
 import 'package:CosmiX/theme/colors.dart';
 import 'package:CosmiX/widgets/card.dart';
 import 'package:CosmiX/widgets/glass_card.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class MyTrips extends StatelessWidget {
-  const MyTrips({super.key});
+  MyTrips({super.key});
+  final TripsController tripsController = Get.put(TripsController());
+  final DateFormat dateformatcontroller = DateFormat();
 
   @override
   Widget build(BuildContext context) {
+    final List<Trip> upcoming = tripsController.upcoming();
+    final List<Trip> past = tripsController.past();
+    final List<Memory> memories = tripsController.memories;
+
     return Scaffold(
       backgroundColor: CosmixColor.bgColor,
       appBar: AppBar(title: const Text("My Trips")),
@@ -30,15 +39,20 @@ class MyTrips extends StatelessWidget {
               const SizedBox(
                 height: 24,
               ),
-              ListView(
-                padding: const EdgeInsets.all(0),
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                children: const [
-                  TripCard(),
-                  TripCard(),
-                ],
-              ),
+              ListView.builder(
+                  itemCount: upcoming.length,
+                  padding: const EdgeInsets.all(0),
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemBuilder: (context, index) {
+                    return TripCard(
+                        upcoming[index].origin,
+                        upcoming[index].destination,
+                        dateformatcontroller
+                            .dateFormatter(upcoming[index].date),
+                        upcoming[index].spaceline,
+                        upcoming[index].spaceship);
+                  }),
               const SizedBox(
                 height: 16,
               ),
@@ -56,15 +70,19 @@ class MyTrips extends StatelessWidget {
               const SizedBox(
                 height: 24,
               ),
-              ListView(
-                padding: const EdgeInsets.all(0),
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                children: const [
-                  TripCard(),
-                  TripCard(),
-                ],
-              ),
+              ListView.builder(
+                  itemCount: upcoming.length,
+                  padding: const EdgeInsets.all(0),
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemBuilder: (context, index) {
+                    return TripCard(
+                        past[index].origin,
+                        past[index].destination,
+                        dateformatcontroller.dateFormatter(past[index].date),
+                        past[index].spaceline,
+                        past[index].spaceship);
+                  }),
               const SizedBox(
                 height: 16,
               ),
@@ -90,10 +108,11 @@ class MyTrips extends StatelessWidget {
                   crossAxisCount: 2,
                   childAspectRatio: 0.7,
                 ),
-                itemCount: 4,
+                itemCount: memories.length,
                 // Adjust the number of cards as needed
                 itemBuilder: (context, index) {
-                  return const MemoryCard();
+                  return MemoryCard(
+                      memories[index].place, memories[index].planet);
                 },
               ),
             ],
@@ -105,9 +124,9 @@ class MyTrips extends StatelessWidget {
 }
 
 class MemoryCard extends StatelessWidget {
-  const MemoryCard({
-    super.key,
-  });
+  String planet;
+  String place;
+  MemoryCard(this.planet, this.place);
 
   @override
   Widget build(BuildContext context) {
@@ -141,16 +160,16 @@ class MemoryCard extends StatelessWidget {
                     ),
                   ),
                 ),
-                const Column(
+                Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     Text(
                       textAlign: TextAlign.center,
-                      "Place Name",
+                      place,
                       style: TextStyle(fontSize: 18, color: CosmixColor.white),
                     ),
-                    Text("Planet Name",
+                    Text(planet,
                         textAlign: TextAlign.center,
                         style: TextStyle(
                             fontSize: 16,
@@ -168,9 +187,13 @@ class MemoryCard extends StatelessWidget {
 }
 
 class TripCard extends StatelessWidget {
-  const TripCard({
-    super.key,
-  });
+  final String destination;
+  final String origin;
+  final String date;
+  final String spaceline;
+  final String spaceship;
+  TripCard(
+      this.destination, this.origin, this.date, this.spaceline, this.spaceship);
 
   @override
   Widget build(BuildContext context) {
@@ -205,8 +228,8 @@ class TripCard extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          const Text(
-                            "Mars",
+                          Text(
+                            origin,
                             style: TextStyle(
                                 fontSize: 18, color: CosmixColor.white),
                           ),
@@ -215,8 +238,8 @@ class TripCard extends StatelessWidget {
                             size: 18,
                             color: CosmixColor.white.withOpacity(0.75),
                           ),
-                          const Text(
-                            "Earth",
+                          Text(
+                            destination,
                             style: TextStyle(
                                 fontSize: 18, color: CosmixColor.white),
                           ),
@@ -230,8 +253,8 @@ class TripCard extends StatelessWidget {
                           ),
                         ],
                       ),
-                      const Text(
-                        "30th September 2163",
+                      Text(
+                        date,
                         textAlign: TextAlign.left,
                         style: TextStyle(
                             color: CosmixColor.subTitleTextColor, fontSize: 14),
@@ -257,14 +280,14 @@ class TripCard extends StatelessWidget {
                       const SizedBox(
                         height: 2,
                       ),
-                      const Row(
+                      Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                "Spaceline",
+                                spaceline,
                                 style: TextStyle(
                                     fontSize: 12,
                                     color: CosmixColor.subTitleTextColor),
@@ -273,7 +296,7 @@ class TripCard extends StatelessWidget {
                                 height: 2,
                               ),
                               Text(
-                                "GalacticSkyways Express",
+                                spaceline,
                                 style: TextStyle(
                                     fontSize: 14, color: CosmixColor.white),
                               )
