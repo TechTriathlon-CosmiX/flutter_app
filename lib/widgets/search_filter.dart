@@ -1,4 +1,5 @@
 import 'package:CosmiX/controllers/booking_filter_controller.dart';
+import 'package:CosmiX/models/planet.dart';
 import 'package:CosmiX/screens/search_and_filter_screen.dart';
 import 'package:CosmiX/theme/colors.dart';
 import 'package:CosmiX/theme/fonts.dart';
@@ -19,9 +20,9 @@ class SearchFilter extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return Obx(() {
-      Rx<TravelLocation> travelLocationfrom = _bookingFilterController
+      Rx<Planet> travelLocationfrom = _bookingFilterController
           .filterFromSpacePort;
-      Rx<TravelLocation> travelLocationto = _bookingFilterController
+      Rx<Planet> travelLocationto = _bookingFilterController
           .filterToSpacePort;
       Rx<String>? departureDate = _bookingFilterController.departureDateAsText;
       Rx<String>? departureTime = _bookingFilterController.departureTimeAsText;
@@ -37,7 +38,7 @@ class SearchFilter extends StatelessWidget {
                       BottomSheetInitiatorType.fromButton);
                 },
                 location: travelLocationfrom.value.planetName,
-                description: travelLocationfrom.value.portName,
+                description: travelLocationfrom.value.planetDescription,
           ),
           const SizedBox(height: 16),
           FromToCustomCard(type: CardType.light,
@@ -47,7 +48,7 @@ class SearchFilter extends StatelessWidget {
                       BottomSheetInitiatorType.toButton);
                 },
                 location: travelLocationto.value.planetName,
-                description: travelLocationto.value.portName,),
+                description: travelLocationto.value.planetDescription,),
           const SizedBox(height: 16),
           Row(
             mainAxisAlignment: MainAxisAlignment.start,

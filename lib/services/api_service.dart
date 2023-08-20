@@ -1,43 +1,46 @@
 import 'dart:convert';
-
+import 'package:CosmiX/models/planet.dart';
 import 'package:CosmiX/util/constants.dart';
 import 'package:http/http.dart' as http;
-import 'package:CosmiX/controllers/booking_filter_controller.dart';
 
 
 class ApiService {
 
-  Future<List<TravelLocation>> fetchTravelLocations() async {
-    final response = await http.get(Uri.parse('$baseUrl/spaceports'));
+  Future<List<Planet>> fetchAllPlanets() async {
+    final response = await http.get(Uri.parse('$baseUrl/allplanets'));
     if (response.statusCode == 200) {
       final List<dynamic> data = json.decode(response.body);
-      return data.map((item) => TravelLocation.fromJson(item)).toList();
+      return data.map((item) => Planet.fromJson(item)).toList();
     } else {
       throw Exception('Failed to load data');
     }
   }
 
   Future<bool> postBooking({
-    required TravelLocation startLocation,
-    required TravelLocation endLocation,
+    required DateTime placedTime,
     required int adultCount,
-    required int childrenCount,
-    required int infantCount,
-    required double charge,
-    required String airline,
-    required String selectedPackage,
+    required int childCount,
+    required String additionalRemarks,
+    required int additionalLuggageCapacity,
+    required double additionalLuggageCharge,
+    required double netValue,
+    required String flightId,
+    required List<String> cabinIds,
+    required double paymentAmount,
   }) async {
     final url = Uri.parse('$baseUrl/bookings');
 
-    final Map<String, dynamic> requestBody = {
-      'startLocation': startLocation.toJson(),
-      'endLocation': endLocation.toJson(),
+    Map<String, dynamic> requestBody = {
+      'placedTime': placedTime.toIso8601String(),
       'adultCount': adultCount,
-      'childrenCount': childrenCount,
-      'infantCount': infantCount,
-      'charge': charge,
-      'airline': airline,
-      'selectedPackage': selectedPackage,
+      'childCount': childCount,
+      'additionalRemarks': additionalRemarks,
+      'additionalLuggageCapacity': additionalLuggageCapacity,
+      'additionalLuggageCharge': additionalLuggageCharge,
+      'netValue': netValue,
+      'flightId': flightId,
+      'cabinIds': cabinIds,
+      'paymentAmount': paymentAmount,
     };
 
     final response = await http.post(
@@ -56,4 +59,16 @@ class ApiService {
       return false;
     }
   }
+
+  // Future<List<SpaceLine>> fetchSpaceLines() async {
+  //   final response = await http.get(Uri.parse('$baseUrl/spacelines'));
+  //   if (response.statusCode == 200) {
+  //     final List<dynamic> data = json.decode(response.body);
+  //     return data.map((item) => SpaceLine.fromJson(item)).toList();
+  //   } else {
+  //     throw Exception('Failed to load data');
+  //   }
+  // }
 }
+
+

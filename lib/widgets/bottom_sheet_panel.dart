@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:CosmiX/controllers/booking_filter_controller.dart';
+import 'package:CosmiX/models/planet.dart';
 import 'package:CosmiX/theme/colors.dart';
 import 'package:CosmiX/theme/fonts.dart';
 import 'package:CosmiX/widgets/button.dart';
@@ -23,13 +24,13 @@ class BottomSheetPanel extends StatefulWidget {
 
 class _BottomSheetPanelState extends State<BottomSheetPanel> {
   final BookingFilterController _bookingFilterController = Get.find();
-  List<TravelLocation> _travelLocations = [];
+  List<Planet> _travelLocations = [];
   // filter method
-  List<TravelLocation> filterSpaceports(String input) {
+  List<Planet> filterSpaceports(String input) {
     final lowerCaseInput = input.toLowerCase();
     return _bookingFilterController.planets.where((spaceport) {
       final lowerCasePlanetName = spaceport.planetName.toLowerCase();
-      final lowerCasePortName = spaceport.portName.toLowerCase();
+      final lowerCasePortName = spaceport.planetDescription.toLowerCase();
       // uncomment if you want to filter the spaceport as well
       // return lowerCasePlanetName.contains(lowerCaseInput) ||
       //     lowerCasePortName.contains(lowerCaseInput);
@@ -203,7 +204,7 @@ class _BottomSheetPanelState extends State<BottomSheetPanel> {
 }
 
 class SpacePort extends StatelessWidget {
-  final TravelLocation travelLocation;
+  final Planet travelLocation;
   const SpacePort({super.key,required this.travelLocation});
 
   @override
@@ -229,7 +230,7 @@ class SpacePort extends StatelessWidget {
                       fontFamily: CosmixFont.fontFamily,
                       color: CosmixColor.titleTextColor,
                       fontSize: 16)),
-              Text(travelLocation.portName,
+              Text(travelLocation.planetDescription,
                   style: TextStyle(
                       fontFamily: CosmixFont.fontFamily,
                       color: CosmixColor.primaryColor)),
