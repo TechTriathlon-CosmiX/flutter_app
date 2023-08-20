@@ -67,7 +67,7 @@ class GlassButton extends StatelessWidget {
             ? CosmixColor.borderGradient
             : CosmixColor.transparentGradient,
       ),
-      width: double.infinity,
+      width: width,
       height: height,
       child: ElevatedButton(
         onPressed: onPressed,
@@ -76,7 +76,7 @@ class GlassButton extends StatelessWidget {
           padding: const EdgeInsets.all(0),
         ),
         child: Container(
-          width: double.infinity,
+          width: width,
           height: height,
           clipBehavior: Clip.antiAlias,
           decoration: ShapeDecoration(

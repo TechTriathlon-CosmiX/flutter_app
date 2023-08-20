@@ -1,4 +1,5 @@
 import 'package:CosmiX/screens/main_screen.dart';
+import 'package:CosmiX/screens/register_screen.dart';
 import 'package:CosmiX/widgets/button.dart';
 import 'package:CosmiX/widgets/card.dart';
 import 'package:CosmiX/widgets/glass_button.dart';
@@ -22,7 +23,11 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: _bottomContent(),
+      backgroundColor: CosmixColor.black,
+      // show the bottom content only if keyboard is not shown
+      floatingActionButton: MediaQuery.of(context).viewInsets.bottom == 0
+          ? _bottomContent()
+          : null,
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       body: DecoratedBox(
         decoration: const BoxDecoration(
@@ -60,7 +65,9 @@ class _LoginScreenState extends State<LoginScreen> {
                       color: CosmixColor.primaryColor,
                       fontSize: 15,
                       fontWeight: FontWeight.w600)),
-              onTap: () {},
+              onTap: () {
+                Get.to(() => RegisterScreen());
+              },
             )
           ],
         ));
@@ -68,7 +75,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   Widget _mainContent() {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 32.0),
+      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 24.0),
       child: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -77,22 +84,37 @@ class _LoginScreenState extends State<LoginScreen> {
               blur: 4,
               type: CardType.dark,
               borderRadius: 16,
-              height: 340,
+              height: 358,
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 32.0),
                 child: Column(
                   children: [
                     const Padding(
-                      padding: EdgeInsets.only(top: 40, bottom: 36),
-                      child: Text(
-                        "Sign in",
-                        textAlign: TextAlign.left,
-                        style: TextStyle(
-                          letterSpacing: -0.5,
-                          fontSize: 32,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.white,
-                        ),
+                      padding: EdgeInsets.only(top: 36, bottom: 36),
+                      child: Column(
+                        children: [
+                          Text(
+                            "Sign in",
+                            textAlign: TextAlign.left,
+                            style: TextStyle(
+                              letterSpacing: -0.5,
+                              fontSize: 32,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.white,
+                            ),
+                          ),
+                          SizedBox(height: 8.0),
+                          Text(
+                            "Sign in to your CosmiX account",
+                            textAlign: TextAlign.left,
+                            style: TextStyle(
+                              letterSpacing: -0.5,
+                              fontSize: 15,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                     InputField(
