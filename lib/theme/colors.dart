@@ -37,9 +37,9 @@ class CosmixColor {
     CosmixColor.primaryColor.withOpacity(0.4)
   ];
   static List<Color> borderGradient = [
-    CosmixColor.white.withOpacity(0.2),
-    CosmixColor.white.withOpacity(0.6),
-    CosmixColor.white.withOpacity(0.2),
+    CosmixColor.white.withOpacity(0.1),
+    CosmixColor.white.withOpacity(0.5),
+    CosmixColor.white.withOpacity(0.1),
   ];
   static List<Color> transparentGradient = [
     CosmixColor.white.withOpacity(0),
