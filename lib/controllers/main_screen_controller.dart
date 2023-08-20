@@ -1,4 +1,5 @@
 import 'package:CosmiX/screens/components_screen.dart';
+import 'package:CosmiX/screens/home_page_screen.dart';
 import 'package:CosmiX/screens/home_screen.dart';
 import 'package:CosmiX/screens/my_trips_screen.dart';
 import 'package:CosmiX/screens/search_and_filter_screen.dart';
@@ -14,7 +15,7 @@ class MainController extends GetxController {
   RxBool isDarkTheme = false.obs;
 
   List<Widget> pages = [
-    const HomeScreen(),
+    CosmixHome(),
     SearchAndFilterScreen(),
     MyTrips(),
     const ComponentsScreen(),
