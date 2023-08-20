@@ -39,7 +39,7 @@ class _BoardingPassScreenState extends State<BoardingPassScreen> {
             children: [
               Expanded(
                 child: Text(
-                  "Terminal",
+                  "Boarding\nDate",
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: CosmixColor.white,
@@ -49,7 +49,7 @@ class _BoardingPassScreenState extends State<BoardingPassScreen> {
               ),
               Expanded(
                 child: Text(
-                  "Gate",
+                  "Boarding\nTime",
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: CosmixColor.white,
@@ -59,7 +59,7 @@ class _BoardingPassScreenState extends State<BoardingPassScreen> {
               ),
               Expanded(
                 child: Text(
-                  "Group",
+                  "Departure\nDate",
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: CosmixColor.white,
@@ -77,7 +77,7 @@ class _BoardingPassScreenState extends State<BoardingPassScreen> {
             children: [
               Expanded(
                 child: Text(
-                  "2E",
+                  "24/12/2023",
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Color(0xFFBC7E28),
@@ -87,7 +87,7 @@ class _BoardingPassScreenState extends State<BoardingPassScreen> {
               ),
               Expanded(
                 child: Text(
-                  "K35",
+                  "10:30",
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Color(0xFFBC7E28),
@@ -97,7 +97,7 @@ class _BoardingPassScreenState extends State<BoardingPassScreen> {
               ),
               Expanded(
                 child: Text(
-                  "B",
+                  "24/12/2023",
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Color(0xFFBC7E28),
@@ -124,7 +124,7 @@ class _BoardingPassScreenState extends State<BoardingPassScreen> {
             children: [
               Expanded(
                 child: Text(
-                  "Boarding \nTime",
+                  "Departure\nTime",
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: CosmixColor.white,
@@ -134,7 +134,7 @@ class _BoardingPassScreenState extends State<BoardingPassScreen> {
               ),
               Expanded(
                 child: Text(
-                  "Cabin",
+                  "Arrival\nDate",
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: CosmixColor.white,
@@ -144,7 +144,7 @@ class _BoardingPassScreenState extends State<BoardingPassScreen> {
               ),
               Expanded(
                 child: Text(
-                  "Space \nShip",
+                  "Arrival\nTime",
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: CosmixColor.white,
@@ -162,7 +162,7 @@ class _BoardingPassScreenState extends State<BoardingPassScreen> {
             children: [
               Expanded(
                 child: Text(
-                  "08:15",
+                  "11:00",
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Color(0xFFBC7E28),
@@ -172,7 +172,7 @@ class _BoardingPassScreenState extends State<BoardingPassScreen> {
               ),
               Expanded(
                 child: Text(
-                  "12XE",
+                  "24/12/2023",
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Color(0xFFBC7E28),
@@ -182,7 +182,7 @@ class _BoardingPassScreenState extends State<BoardingPassScreen> {
               ),
               Expanded(
                 child: Text(
-                  "Stagwall",
+                  "15:00",
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Color(0xFFBC7E28),
@@ -204,7 +204,7 @@ class _BoardingPassScreenState extends State<BoardingPassScreen> {
       children: [
         // ... (back side content)
         Padding(
-          padding: EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(8.0),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -213,7 +213,7 @@ class _BoardingPassScreenState extends State<BoardingPassScreen> {
                   Row(
                     children: [
                       Text(
-                        'Luggage Deposits',
+                        'Terminal',
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 16,
@@ -224,7 +224,7 @@ class _BoardingPassScreenState extends State<BoardingPassScreen> {
                   Row(
                     children: [
                       Text(
-                        '00:17:54',
+                        '2E',
                         style: TextStyle(
                           color: Color(0xFFBC7E28),
                           fontSize: 16,
@@ -238,7 +238,7 @@ class _BoardingPassScreenState extends State<BoardingPassScreen> {
                   Row(
                     children: [
                       Text(
-                        'Time to Gate',
+                        'Gate',
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 16,
@@ -249,7 +249,32 @@ class _BoardingPassScreenState extends State<BoardingPassScreen> {
                   Row(
                     children: [
                       Text(
-                        '38:22',
+                        'K35',
+                        style: TextStyle(
+                          color: Color(0xFFBC7E28),
+                          fontSize: 16,
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 24,
+                  ),
+                  Row(
+                    children: [
+                      Text(
+                        'Group',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 16,
+                        ),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Text(
+                        'B',
                         style: TextStyle(
                           color: Color(0xFFBC7E28),
                           fontSize: 16,
@@ -258,6 +283,85 @@ class _BoardingPassScreenState extends State<BoardingPassScreen> {
                     ],
                   ),
                 ],
+              ),
+              const Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Column(
+                  children: [
+                    Row(
+                      children: [
+                        Text(
+                          'Seat',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 16,
+                          ),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Text(
+                          '12X',
+                          style: TextStyle(
+                            color: Color(0xFFBC7E28),
+                            fontSize: 16,
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 24,
+                    ),
+                    Row(
+                      children: [
+                        Text(
+                          'Class',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 16,
+                          ),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Text(
+                          'F',
+                          style: TextStyle(
+                            color: Color(0xFFBC7E28),
+                            fontSize: 16,
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 24,
+                    ),
+                    Row(
+                      children: [
+                        Text(
+                          'Space Ship',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 16,
+                          ),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Text(
+                          'Stagwall',
+                          style: TextStyle(
+                            color: Color(0xFFBC7E28),
+                            fontSize: 16,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.all(24.0),
