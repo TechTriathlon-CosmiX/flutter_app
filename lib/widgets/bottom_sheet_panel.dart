@@ -22,7 +22,7 @@ class BottomSheetPanel extends StatelessWidget {
     if(initiator == BottomSheetInitiatorType.fromButton || initiator == BottomSheetInitiatorType.toButton) {
       return Container(
           decoration: BoxDecoration(
-            color: CosmixColor.bgColor.withOpacity(0.85),
+            color: CosmixColor.black.withOpacity(0.75),
             borderRadius: const BorderRadius.only(
               topLeft: Radius.circular(16),
               topRight: Radius.circular(16),
@@ -34,25 +34,29 @@ class BottomSheetPanel extends StatelessWidget {
               topRight: Radius.circular(16),
             ),
             child: BackdropFilter(
-              filter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
+              filter: ImageFilter.blur(sigmaX: 8.0, sigmaY: 16.0),
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+                padding: const EdgeInsets.symmetric(
+                    horizontal: 20.0, vertical: 16.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     // search box
                     Center(
                       child: Container(
-                        color: CosmixColor.lighterWhite,
-                        height: 5,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: CosmixColor.lighterWhite,
+                        ),
+                        height: 4,
                         width: 40,
                       ),
                     ),
                     const SizedBox(
-                      height: 10,
+                      height: 16,
                     ),
                     InputField(
-                      labelText: 'Search for..',
+                      labelText: 'Search Spaceports ...',
                       leadingIcon: const Icon(Icons.search_rounded),
                       controller: controller,
                     ),
@@ -65,16 +69,28 @@ class BottomSheetPanel extends StatelessWidget {
                         itemBuilder: (context, index) {
                           return Column(
                             children: [
-                              ElevatedButton(
-                                style: ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(CosmixColor.bgColor.withOpacity(0.85)),),
-                                onPressed: () {
-                                  // Handle the item click here.
-                                  _planetController.changePlanet(initiator, _planetController.planets[index]);
-                                  Navigator.pop(context);
-                                },
-                                child: SpacePort(travelLocation: _planetController.planets[index]),
+                              ClipRRect(
+                                borderRadius: BorderRadius.circular(10),
+                                child: ElevatedButton(
+                                  style: ButtonStyle(
+                                    backgroundColor: MaterialStateProperty.all<
+                                            Color>(
+                                        CosmixColor.black.withOpacity(0.75)),
+                                  ),
+                                  onPressed: () {
+                                    // Handle the item click here.
+                                    _planetController.changePlanet(initiator,
+                                        _planetController.planets[index]);
+                                    Navigator.pop(context);
+                                  },
+                                  child: SpacePort(
+                                      travelLocation:
+                                          _planetController.planets[index]),
+                                ),
                               ),
-                              Divider(color: CosmixColor.lightGrey.withOpacity(0.2), thickness: 2),
+                              Divider(
+                                  color: CosmixColor.lightGrey.withOpacity(0.2),
+                                  thickness: 1.5),
                             ],
                           );
                         },
@@ -90,7 +106,7 @@ class BottomSheetPanel extends StatelessWidget {
       DateTime dateTime = DateTime.now();
       return Container(
         decoration: BoxDecoration(
-          color: CosmixColor.bgColor.withOpacity(0.85),
+          color: CosmixColor.black.withOpacity(0.5),
           borderRadius: const BorderRadius.only(
             topLeft: Radius.circular(16),
             topRight: Radius.circular(16),
@@ -157,23 +173,31 @@ class SpacePort extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(5.0),
+      padding: const EdgeInsets.all(8.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           // image of the planet
           Image.asset(
             'assets/images/planets/${travelLocation.planetName.toLowerCase()}.png',
-            width: 70,
-            height: 70,
+            width: 64,
+            height: 64,
           ),
-          const SizedBox(width: 16),
+          const SizedBox(width: 24),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(travelLocation.planetName, style: TextStyle(fontFamily: CosmixFont.fontFamily, color: CosmixColor.titleTextColor, fontSize: 16)),
-              Text(travelLocation.portName, style: TextStyle(fontFamily: CosmixFont.fontFamily, color: CosmixColor.primaryColor)),
+              Text(travelLocation.planetName,
+                  style: TextStyle(
+                      fontFamily: CosmixFont.fontFamily,
+                      color: CosmixColor.titleTextColor,
+                      fontSize: 16)),
+              Text(travelLocation.portName,
+                  style: TextStyle(
+                      fontFamily: CosmixFont.fontFamily,
+                      color: CosmixColor.primaryColor)),
+              const SizedBox(height: 8),
             ],
           ),
         ],

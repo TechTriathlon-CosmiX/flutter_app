@@ -1,9 +1,11 @@
+import 'package:CosmiX/screens/main_screen.dart';
 import 'package:CosmiX/widgets/button.dart';
 import 'package:CosmiX/widgets/card.dart';
 import 'package:CosmiX/widgets/glass_button.dart';
 import 'package:CosmiX/widgets/glass_card.dart';
 import 'package:CosmiX/widgets/input_field.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../theme/colors.dart';
 
@@ -75,7 +77,7 @@ class _LoginScreenState extends State<LoginScreen> {
               blur: 4,
               type: CardType.dark,
               borderRadius: 16,
-              height: 336,
+              height: 340,
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 32.0),
                 child: Column(
@@ -97,7 +99,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         labelText: "Email",
                         controller: emailController,
                         leadingIcon: const Icon(Icons.person_2_outlined)),
-                    const SizedBox(height: 20.0),
+                    const SizedBox(height: 24.0),
                     InputField(
                         labelText: "Password",
                         controller: emailController,
@@ -131,7 +133,7 @@ class _LoginScreenState extends State<LoginScreen> {
             const SizedBox(height: 24.0),
             GlassButton(
               onPressed: () {
-                print("clicked");
+                Get.to(() => MainScreen());
               },
               buttonText: "Login",
               type: ButtonType.primaryColor,

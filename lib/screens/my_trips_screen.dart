@@ -10,13 +10,13 @@ class MyTrips extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: CosmixColor.bgColor,
-      appBar: AppBar(title: Text("My Trips")),
+      appBar: AppBar(title: const Text("My Trips")),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 36.0),
           child: Column(
             children: [
-              Container(
+              const SizedBox(
                 width: double.infinity,
                 child: Text(
                   "Upcoming",
@@ -27,18 +27,22 @@ class MyTrips extends StatelessWidget {
                       color: CosmixColor.white),
                 ),
               ),
-              SizedBox(
-                height: 30,
+              const SizedBox(
+                height: 24,
               ),
               ListView(
+                padding: const EdgeInsets.all(0),
                 shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
-                children: [
+                physics: const NeverScrollableScrollPhysics(),
+                children: const [
                   TripCard(),
                   TripCard(),
                 ],
               ),
-              Container(
+              const SizedBox(
+                height: 16,
+              ),
+              const SizedBox(
                 width: double.infinity,
                 child: Text(
                   "Past Trips",
@@ -49,18 +53,22 @@ class MyTrips extends StatelessWidget {
                       color: CosmixColor.white),
                 ),
               ),
-              SizedBox(
-                height: 30,
+              const SizedBox(
+                height: 24,
               ),
               ListView(
+                padding: const EdgeInsets.all(0),
                 shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
-                children: [
+                physics: const NeverScrollableScrollPhysics(),
+                children: const [
                   TripCard(),
                   TripCard(),
                 ],
               ),
-              Container(
+              const SizedBox(
+                height: 16,
+              ),
+              const SizedBox(
                 width: double.infinity,
                 child: Text(
                   "Memories made for you",
@@ -71,19 +79,21 @@ class MyTrips extends StatelessWidget {
                       color: CosmixColor.white),
                 ),
               ),
-              SizedBox(
-                height: 30,
+              const SizedBox(
+                height: 24,
               ),
               GridView.builder(
+                padding: const EdgeInsets.all(0),
                 shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                physics: const NeverScrollableScrollPhysics(),
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
                   childAspectRatio: 0.7,
                 ),
-                itemCount: 4, // Adjust the number of cards as needed
+                itemCount: 4,
+                // Adjust the number of cards as needed
                 itemBuilder: (context, index) {
-                  return MemoryCard();
+                  return const MemoryCard();
                 },
               ),
             ],
@@ -102,37 +112,57 @@ class MemoryCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        margin: EdgeInsets.all(10),
-        child: GlassCard(
-          child: Container(
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image:
-                    AssetImage('assets/images/trip_card_images/HomePage.png'),
-                fit: BoxFit.cover,
-              ),
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Text(
-                  textAlign: TextAlign.center,
-                  "Place Name",
-                  style: TextStyle(fontSize: 18, color: CosmixColor.white),
+        margin: const EdgeInsets.all(10),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(8),
+          child: CustomCard(
+            showBorder: false,
+            showShadow: false,
+            type: CardType.dark,
+            child: Container(
+              decoration: const BoxDecoration(
+                image: DecorationImage(
+                  image:
+                      AssetImage('assets/images/trip_card_images/HomePage.png'),
+                  fit: BoxFit.cover,
                 ),
-                Text("Planet Name",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                        fontSize: 16, color: CosmixColor.subTitleTextColor)),
-                SizedBox(
-                  height: 20,
-                )
-              ],
+              ),
+              child: Stack(children: [
+                // gradient fill
+                Container(
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: [
+                        Colors.transparent,
+                        CosmixColor.black.withOpacity(0.8),
+                      ],
+                      begin: Alignment.center,
+                      end: Alignment.bottomCenter,
+                    ),
+                  ),
+                ),
+                const Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Text(
+                      textAlign: TextAlign.center,
+                      "Place Name",
+                      style: TextStyle(fontSize: 18, color: CosmixColor.white),
+                    ),
+                    Text("Planet Name",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            fontSize: 16,
+                            color: CosmixColor.subTitleTextColor)),
+                    SizedBox(
+                      height: 20,
+                    )
+                  ],
+                ),
+              ]),
             ),
           ),
-          type: CardType.dark,
-          height: 300,
         ));
   }
 }
@@ -147,12 +177,14 @@ class TripCard extends StatelessWidget {
     return Column(
       children: [
         GlassCard(
+          height: 220,
+          type: CardType.dark,
           child: Column(
             children: [
               Expanded(
                 flex: 2,
                 child: Container(
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     image: DecorationImage(
                       image: AssetImage(
                           'assets/images/trip_card_images/HomePage.png'),
@@ -165,7 +197,7 @@ class TripCard extends StatelessWidget {
                 flex: 3,
                 child: Padding(
                   padding:
-                      const EdgeInsets.symmetric(horizontal: 24, vertical: 15),
+                      const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -173,7 +205,7 @@ class TripCard extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
+                          const Text(
                             "Mars",
                             style: TextStyle(
                                 fontSize: 18, color: CosmixColor.white),
@@ -183,51 +215,62 @@ class TripCard extends StatelessWidget {
                             size: 18,
                             color: CosmixColor.white.withOpacity(0.75),
                           ),
-                          Text(
+                          const Text(
                             "Earth",
                             style: TextStyle(
                                 fontSize: 18, color: CosmixColor.white),
                           ),
-                          Icon(
-                            Icons.share_outlined,
-                            size: 18,
-                            color: CosmixColor.white,
+                          GestureDetector(
+                            onTap: () {},
+                            child: const Icon(
+                              Icons.share_outlined,
+                              size: 18,
+                              color: CosmixColor.white,
+                            ),
                           ),
                         ],
                       ),
-                      Text(
+                      const Text(
                         "30th September 2163",
                         textAlign: TextAlign.left,
                         style: TextStyle(
                             color: CosmixColor.subTitleTextColor, fontSize: 14),
                       ),
+                      const SizedBox(
+                        height: 2,
+                      ),
                       Container(
-                        width: 333.0,
+                        width: double.infinity,
                         height: 2.0,
                         decoration: BoxDecoration(
                           gradient: LinearGradient(
                             colors: [
-                              CosmixColor.logoColor.withOpacity(0.2),
-                              CosmixColor.logoColor,
-                              CosmixColor.logoColor.withOpacity(0.2),
+                              CosmixColor.primaryColor.withOpacity(0.2),
+                              CosmixColor.primaryColor,
+                              CosmixColor.primaryColor.withOpacity(0.2),
                             ],
-                            stops: [0.0, 0.5, 1.0],
                             begin: Alignment.centerLeft,
                             end: Alignment.centerRight,
                           ),
                         ),
                       ),
-                      Row(
+                      const SizedBox(
+                        height: 2,
+                      ),
+                      const Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                "Spaceship Partner",
+                                "Spaceline",
                                 style: TextStyle(
                                     fontSize: 12,
                                     color: CosmixColor.subTitleTextColor),
+                              ),
+                              SizedBox(
+                                height: 2,
                               ),
                               Text(
                                 "GalacticSkyways Express",
@@ -245,6 +288,9 @@ class TripCard extends StatelessWidget {
                                       fontSize: 12,
                                       color: CosmixColor.subTitleTextColor),
                                 ),
+                                SizedBox(
+                                  height: 2,
+                                ),
                                 Text(
                                   "Odyssey",
                                   style: TextStyle(
@@ -259,9 +305,8 @@ class TripCard extends StatelessWidget {
               )
             ],
           ),
-          type: CardType.dark,
         ),
-        SizedBox(height: 20)
+        const SizedBox(height: 24)
       ],
     );
   }

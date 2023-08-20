@@ -25,7 +25,7 @@ class CosmixColor {
   static Color shadowColor = CosmixColor.primaryColor.withOpacity(0.4);
 
   static List<Color> lightGradient = [
-    CosmixColor.white.withOpacity(0.3),
+    CosmixColor.white.withOpacity(0.2),
     CosmixColor.white.withOpacity(0.1)
   ];
   static List<Color> darkGradient = [

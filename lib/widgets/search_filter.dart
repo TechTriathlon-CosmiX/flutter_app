@@ -41,10 +41,11 @@ class SearchFilter extends StatelessWidget {
               child: Button(
                   fontSize: 14,
                   leftIcon: const Icon(Icons.calendar_month_rounded),
-                  type: ButtonType.primary,
+                  type: ButtonType.secondary,
                   buttonText: "Departure",
-                  onPressed: (){
-                    _showCustomBottomSheet(context, BottomSheetType.timeInput, BottomSheetInitiatorType.departureTime);
+                  onPressed: () {
+                    _showCustomBottomSheet(context, BottomSheetType.timeInput,
+                        BottomSheetInitiatorType.departureTime);
                   }),
             ),
             const SizedBox(width: 20),
@@ -52,10 +53,11 @@ class SearchFilter extends StatelessWidget {
               child: Button(
                   fontSize: 14,
                   leftIcon: const Icon(Icons.calendar_month_rounded),
-                  type: ButtonType.primary,
+                  type: ButtonType.secondary,
                   buttonText: "Arrival",
-                  onPressed: (){
-                    _showCustomBottomSheet(context, BottomSheetType.timeInput, BottomSheetInitiatorType.arrivalTime);
+                  onPressed: () {
+                    _showCustomBottomSheet(context, BottomSheetType.timeInput,
+                        BottomSheetInitiatorType.arrivalTime);
                   }),
             ),
           ],

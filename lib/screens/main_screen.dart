@@ -27,7 +27,7 @@ class MainScreen extends StatelessWidget {
     );
   }
 
-  Widget _bottomNavBar(context) {
+  Widget _bottomNavBar(BuildContext context) {
     return ClipRRect(
       // set border radius
       borderRadius: const BorderRadius.only(

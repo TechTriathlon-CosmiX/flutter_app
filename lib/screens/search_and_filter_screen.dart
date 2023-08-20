@@ -1,15 +1,13 @@
-import 'package:CosmiX/controllers/passenger_input_controller.dart';
 import 'package:CosmiX/theme/colors.dart';
-import 'package:CosmiX/widgets/bottom_sheet_panel.dart';
 import 'package:CosmiX/widgets/button.dart';
 import 'package:CosmiX/widgets/card.dart';
-import 'package:CosmiX/widgets/passenger_input.dart';
+import 'package:CosmiX/widgets/glass_button.dart';
+import 'package:CosmiX/widgets/glass_card.dart';
 import 'package:CosmiX/widgets/search_filter.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-
-enum BottomSheetType {locationList, timeInput}
+enum BottomSheetType { locationList, timeInput }
 
 class SearchAndFilterScreen extends StatelessWidget {
   SearchAndFilterScreen({super.key});
@@ -22,33 +20,32 @@ class SearchAndFilterScreen extends StatelessWidget {
       backgroundColor: CosmixColor.bgColor,
       // Replace the 8 lines Navigator.push by a simple Get.to(). You don't need context
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 36.0),
+        padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 32.0),
         child: Center(
             child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                border: Border.all( // Add this border
-                  color: CosmixColor.lighterWhite, // Border color
-                  width: 1.0, // Border width
-                ),
-              ),
-              child: CustomCard(type: CardType.dark, child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 24.0),
-                child: SearchFilter(),
-              )),
-            ),
+            GlassCard(
+                height: 460,
+                borderRadius: 16,
+                type: CardType.dark,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 24.0, vertical: 26.0),
+                  child: SearchFilter(),
+                )),
             const SizedBox(height: 24.0),
-            Button(
+            GlassButton(
                 type: ButtonType.primary,
+                fontSize: 17,
                 buttonText: "Advanced filters",
                 onPressed: () => Get.back()),
             const SizedBox(height: 24.0),
-            Button(rightIcon: const Icon(Icons.check_circle_outline_rounded),
+            GlassButton(
                 type: ButtonType.primaryColor,
-                buttonText: "Primary",
+                leftIcon: const Icon(Icons.search_rounded),
+                fontSize: 17,
+                buttonText: "Search for flights",
                 onPressed: () => Get.back()),
           ],
         )),
