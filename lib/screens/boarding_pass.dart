@@ -11,16 +11,13 @@ class BoardingPassScreen extends StatefulWidget {
 }
 
 class _BoardingPassScreenState extends State<BoardingPassScreen> {
-  double rotationValue = 0.0;
   bool isFlipped = false; // Track the card's flipped state
 
   void _handleSwipe(SwipeDirection direction) {
     setState(() {
       if (direction == SwipeDirection.left) {
-        rotationValue -= 0.0;
         isFlipped = !isFlipped; // Toggle the flipped state
       } else if (direction == SwipeDirection.right) {
-        rotationValue += 0.0;
         isFlipped = !isFlipped; // Toggle the flipped state
       }
     });
@@ -404,8 +401,8 @@ class _BoardingPassScreenState extends State<BoardingPassScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 AnimatedBuilder(
-                  animation: Tween<double>(begin: 0, end: rotationValue)
-                      .animate(CurvedAnimation(
+                  animation:
+                      Tween<double>(begin: 0, end: 0).animate(CurvedAnimation(
                     parent: ModalRoute.of(context)!.animation!,
                     curve: Curves.easeInOut,
                   )),
