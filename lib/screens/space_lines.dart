@@ -1,14 +1,21 @@
+import 'package:CosmiX/controllers/date_time_formatter.dart';
+import 'package:CosmiX/controllers/space_lines_controller.dart';
 import 'package:CosmiX/theme/colors.dart';
 import 'package:CosmiX/widgets/button.dart';
 import 'package:CosmiX/widgets/card.dart';
 import 'package:CosmiX/widgets/glass_card.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class SpaceLines extends StatelessWidget {
-  const SpaceLines({super.key});
+  SpaceLines({super.key});
+  final SpaceLinesController spaceLinesController =
+      Get.put(SpaceLinesController());
+  final DateFormat dateformatcontroller = DateFormat();
 
   @override
   Widget build(BuildContext context) {
+    final List<SpaceLine> spacelines = spaceLinesController.spaceLines;
     return Scaffold(
       backgroundColor: CosmixColor.bgColor,
       appBar: AppBar(title: Text("Space Lines")),
@@ -17,15 +24,21 @@ class SpaceLines extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 36.0),
           child: Column(
             children: [
-              ListView(
-                shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
-                children: [
-                  SpacelineCard(),
-                  SpacelineCard(),
-                  SpacelineCard(),
-                ],
-              ),
+              ListView.builder(
+                  itemCount: spacelines.length,
+                  shrinkWrap: true,
+                  physics: NeverScrollableScrollPhysics(),
+                  itemBuilder: (context, index) {
+                    return SpacelineCard(
+                        dateformatcontroller
+                            .dateFormatter(spacelines[index].date),
+                        dateformatcontroller
+                            .timeFormatter(spacelines[index].time),
+                        spacelines[index].country,
+                        spacelines[index].spaceline,
+                        spacelines[index].cost,
+                        spacelines[index].duration);
+                  }),
             ],
           ),
         ),
@@ -35,10 +48,14 @@ class SpaceLines extends StatelessWidget {
 }
 
 class SpacelineCard extends StatelessWidget {
-  const SpacelineCard({
-    super.key,
-  });
-
+  final String date;
+  final String time;
+  final String country;
+  final String spaceline;
+  final String cost;
+  final String duration;
+  SpacelineCard(this.date, this.time, this.country, this.spaceline, this.cost,
+      this.duration);
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -55,38 +72,41 @@ class SpacelineCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Column(
-                      children: [
-                        Text(
-                          'Monday Aug 2235',
-                          style:
-                              TextStyle(fontSize: 10, color: CosmixColor.white),
-                        ),
-                        Text(
-                          '07:15',
-                          style:
-                              TextStyle(fontSize: 24, color: CosmixColor.white),
-                        ),
-                        Text(
-                          'Sri Lanka',
-                          style:
-                              TextStyle(fontSize: 16, color: CosmixColor.white),
-                        )
-                      ],
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            date,
+                            style: TextStyle(
+                                fontSize: 10, color: CosmixColor.white),
+                          ),
+                          Text(
+                            time,
+                            style: TextStyle(
+                                fontSize: 24, color: CosmixColor.white),
+                          ),
+                          Text(
+                            country,
+                            style: TextStyle(
+                                fontSize: 14, color: CosmixColor.white),
+                          )
+                        ],
+                      ),
                     ),
-                    Image.asset('assets/images/spaceships/spaceship1.png'),
-                    Container(
-                      width: 80,
-                      child: Text("Galactic Skyways",
+                    Expanded(
+                        child: Image.asset(
+                            'assets/images/spaceships/spaceship1.png')),
+                    Expanded(
+                      child: Text(spaceline,
                           textAlign: TextAlign.right,
-                          maxLines: 2,
                           style: TextStyle(
                               fontSize: 16, color: CosmixColor.white)),
                     )
                   ],
                 ),
                 Text(
-                  "2 months",
+                  '$duration months',
                   style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w400,
@@ -94,7 +114,7 @@ class SpacelineCard extends StatelessWidget {
                 ),
                 Button(
                   onPressed: () {},
-                  buttonText: "From 4 million onwards",
+                  buttonText: "From $cost million onwards",
                   type: ButtonType.secondary,
                   rightIcon: Icon(Icons.arrow_forward_ios_rounded),
                 )

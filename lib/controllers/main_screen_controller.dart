@@ -1,5 +1,7 @@
 import 'package:CosmiX/screens/components_screen.dart';
 import 'package:CosmiX/screens/home_screen.dart';
+import 'package:CosmiX/screens/my_trips_screen.dart';
+import 'package:CosmiX/screens/search_and_filter_screen.dart';
 import 'package:CosmiX/screens/search_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -13,7 +15,8 @@ class MainController extends GetxController {
 
   List<Widget> pages = [
     const HomeScreen(),
-    const SearchScreen(),
+    SearchAndFilterScreen(),
+    MyTrips(),
     const ComponentsScreen(),
   ];
 

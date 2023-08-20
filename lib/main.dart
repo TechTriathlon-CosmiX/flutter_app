@@ -1,6 +1,5 @@
 import 'package:CosmiX/controllers/main_screen_controller.dart';
-import 'package:CosmiX/controllers/passenger_input_controller.dart';
-import 'package:CosmiX/controllers/planet_controller.dart';
+import 'package:CosmiX/controllers/booking_filter_controller.dart';
 import 'package:CosmiX/controllers/selectable_planet_controller.dart';
 import 'package:CosmiX/screens/welcome_screen.dart';
 import 'package:CosmiX/services/api_service.dart';
@@ -49,8 +48,7 @@ class MyApp extends StatelessWidget {
       home: const WelcomeScreen(),
       initialBinding: BindingsBuilder(() {
         Get.put(SelectablePlanetsController());
-        Get.put(PassengerController());
-        Get.put(PlanetController());
+        Get.put(BookingFilterController());
       }),
     );
   }

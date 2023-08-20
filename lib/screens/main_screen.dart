@@ -97,10 +97,16 @@ class MainScreen extends StatelessWidget {
                         context,
                         label: "Search"),
                     _bottomNavBarItem(
-                        icon: Icons.dashboard_rounded,
+                        icon: Icons.rocket_launch,
                         page: 2,
                         context,
-                        label: "Widgets"),
+                        label: "My Trips"),
+                    _bottomNavBarItem(
+                      icon: Icons.settings,
+                      page: 3,
+                      context,
+                      label: "Settings",
+                    ),
                   ],
                 ),
               ),
