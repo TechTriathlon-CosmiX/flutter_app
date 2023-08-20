@@ -1,4 +1,5 @@
-import 'package:CosmiX/controllers/passenger_input_controller.dart';
+// import 'package:CosmiX/controllers/passenger_input_controller.dart';
+import 'package:CosmiX/controllers/booking_filter_controller.dart';
 import 'package:CosmiX/theme/colors.dart';
 import 'package:CosmiX/theme/fonts.dart';
 import 'package:flutter/material.dart';
@@ -7,7 +8,7 @@ import 'package:get/get.dart';
 class PassengerInputRow extends StatelessWidget {
   final PassengerType type;
   RxInt count;
-  final PassengerController controller;
+  final BookingFilterController controller;
 
   PassengerInputRow({
     required this.type,
