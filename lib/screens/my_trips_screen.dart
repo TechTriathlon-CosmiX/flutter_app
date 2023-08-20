@@ -51,7 +51,8 @@ class MyTrips extends StatelessWidget {
                         dateformatcontroller
                             .dateFormatter(upcoming[index].date),
                         upcoming[index].spaceline,
-                        upcoming[index].spaceship);
+                        upcoming[index].spaceship,
+                        index.toString());
                   }),
               const SizedBox(
                 height: 16,
@@ -71,7 +72,7 @@ class MyTrips extends StatelessWidget {
                 height: 24,
               ),
               ListView.builder(
-                  itemCount: upcoming.length,
+                  itemCount: past.length,
                   padding: const EdgeInsets.all(0),
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
@@ -81,7 +82,8 @@ class MyTrips extends StatelessWidget {
                         past[index].destination,
                         dateformatcontroller.dateFormatter(past[index].date),
                         past[index].spaceline,
-                        past[index].spaceship);
+                        past[index].spaceship,
+                        (upcoming.length - index).toString());
                   }),
               const SizedBox(
                 height: 16,
@@ -111,8 +113,8 @@ class MyTrips extends StatelessWidget {
                 itemCount: memories.length,
                 // Adjust the number of cards as needed
                 itemBuilder: (context, index) {
-                  return MemoryCard(
-                      memories[index].place, memories[index].planet);
+                  return MemoryCard(memories[index].place,
+                      memories[index].planet, index.toString());
                 },
               ),
             ],
@@ -126,7 +128,8 @@ class MyTrips extends StatelessWidget {
 class MemoryCard extends StatelessWidget {
   String planet;
   String place;
-  MemoryCard(this.planet, this.place);
+  String imageno;
+  MemoryCard(this.planet, this.place, this.imageno);
 
   @override
   Widget build(BuildContext context) {
@@ -139,10 +142,10 @@ class MemoryCard extends StatelessWidget {
             showShadow: false,
             type: CardType.dark,
             child: Container(
-              decoration: const BoxDecoration(
+              decoration: BoxDecoration(
                 image: DecorationImage(
-                  image:
-                      AssetImage('assets/images/trip_card_images/HomePage.png'),
+                  image: AssetImage(
+                      'assets/images/trip_card_images/memory$imageno.png'),
                   fit: BoxFit.cover,
                 ),
               ),
@@ -192,8 +195,9 @@ class TripCard extends StatelessWidget {
   final String date;
   final String spaceline;
   final String spaceship;
-  TripCard(
-      this.destination, this.origin, this.date, this.spaceline, this.spaceship);
+  final String imageno;
+  TripCard(this.destination, this.origin, this.date, this.spaceline,
+      this.spaceship, this.imageno);
 
   @override
   Widget build(BuildContext context) {
@@ -207,10 +211,10 @@ class TripCard extends StatelessWidget {
               Expanded(
                 flex: 2,
                 child: Container(
-                  decoration: const BoxDecoration(
+                  decoration: BoxDecoration(
                     image: DecorationImage(
                       image: AssetImage(
-                          'assets/images/trip_card_images/HomePage.png'),
+                          'assets/images/trip_card_images/tripimage$imageno.png'),
                       fit: BoxFit.cover,
                     ),
                   ),

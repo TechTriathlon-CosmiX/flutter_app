@@ -23,7 +23,7 @@ class TripsController extends GetxController {
   List<Trip> upcoming() {
     List<Trip> upcomingTrips = [];
     upcomingTrips =
-        trips.where((trip) => trip.date.isBefore(filterDate)).toList();
+        trips.where((trip) => trip.date.isAfter(filterDate)).toList();
     return upcomingTrips;
   }
 
