@@ -10,6 +10,7 @@ class GlassButton extends StatelessWidget {
   final double height;
   final double width;
   final double fontSize;
+  final FontWeight fontWeight;
   final double iconSize;
   final Color borderColor;
   final Color color;
@@ -31,11 +32,12 @@ class GlassButton extends StatelessWidget {
     this.height = 55,
     this.width = double.infinity,
     this.fontSize = 16,
+    this.fontWeight = FontWeight.normal,
     this.iconSize = 21,
     this.borderColor = CosmixColor.lightWhite,
     this.color = CosmixColor.white,
     this.showBorder = true,
-    this.blur = 14,
+    this.blur = 8,
     this.showShadow = true,
     this.borderRadius = 16,
   });
@@ -50,12 +52,20 @@ class GlassButton extends StatelessWidget {
       linearGradient: LinearGradient(
         begin: Alignment.centerLeft,
         end: Alignment.centerRight,
-        colors: CosmixColor.lightGradient,
+        colors: type == ButtonType.primary
+            ? CosmixColor.lightGradient
+            : type == ButtonType.primaryColor
+                ? CosmixColor.primaryColorGradient
+                : type == ButtonType.secondary
+                    ? CosmixColor.darkGradient
+                    : CosmixColor.transparentGradient,
       ),
       borderGradient: LinearGradient(
         begin: Alignment.centerLeft,
         end: Alignment.centerRight,
-        colors: CosmixColor.borderGradient,
+        colors: showBorder
+            ? CosmixColor.borderGradient
+            : CosmixColor.transparentGradient,
       ),
       width: double.infinity,
       height: height,
@@ -63,9 +73,6 @@ class GlassButton extends StatelessWidget {
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
           backgroundColor: Colors.transparent,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(16),
-          ),
           padding: const EdgeInsets.all(0),
         ),
         child: Container(
@@ -73,23 +80,8 @@ class GlassButton extends StatelessWidget {
           height: height,
           clipBehavior: Clip.antiAlias,
           decoration: ShapeDecoration(
-            gradient: LinearGradient(
-              colors: type == ButtonType.primary
-                  ? CosmixColor.lightGradient
-                  : type == ButtonType.primaryColor
-                      ? CosmixColor.primaryColorGradient
-                      : type == ButtonType.secondary
-                          ? CosmixColor.darkGradient
-                          : CosmixColor.transparentGradient,
-            ),
             shape: RoundedRectangleBorder(
-              side: showBorder
-                  ? BorderSide(
-                      width: 1,
-                      strokeAlign: BorderSide.strokeAlignCenter,
-                      color: borderColor,
-                    )
-                  : BorderSide.none,
+              side: BorderSide.none,
               borderRadius: BorderRadius.circular(16),
             ),
             shadows: [
@@ -123,12 +115,13 @@ class GlassButton extends StatelessWidget {
                 child: Text(
                   buttonText,
                   style: TextStyle(
+                    letterSpacing: 0,
                     color: type == ButtonType.disabled
                         ? CosmixColor.lighterWhite
                         : color,
                     fontSize: fontSize,
                     fontFamily: 'Gilroy-SemiBold',
-                    fontWeight: FontWeight.w400,
+                    fontWeight: fontWeight,
                   ),
                 ),
               ),
