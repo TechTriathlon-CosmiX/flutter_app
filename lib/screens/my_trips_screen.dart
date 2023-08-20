@@ -1,4 +1,4 @@
-import 'package:CosmiX/controllers/date_formatter.dart';
+import 'package:CosmiX/controllers/date_time_formatter.dart';
 import 'package:CosmiX/controllers/trips_controller.dart';
 import 'package:CosmiX/theme/colors.dart';
 import 'package:CosmiX/widgets/card.dart';
