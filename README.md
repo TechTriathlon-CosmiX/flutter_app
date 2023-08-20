@@ -1,5 +1,4 @@
-# flutter_app
-
+# CosmiX - Flutter Mobile App
 CosmiX mobile app built using Flutter for Tech Triathlon by Rootcode
 
 ## Getting Started

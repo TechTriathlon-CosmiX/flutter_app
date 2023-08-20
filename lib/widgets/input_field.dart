@@ -4,17 +4,21 @@ import 'package:flutter/material.dart';
 class InputField extends StatelessWidget {
   final Icon? leadingIcon;
   final Color color;
+  final Color fillColor;
   final String labelText;
   final bool obscureText;
   final TextEditingController controller;
+  final void Function(String)? onChanged;
 
   const InputField({
     super.key,
+    required this.labelText,
+    required this.controller,
     this.leadingIcon,
     this.color = CosmixColor.white,
-    required this.labelText,
+    this.fillColor = CosmixColor.lighterBlack,
     this.obscureText = false,
-    required this.controller,
+    this.onChanged,
   });
 
   @override
@@ -26,13 +30,15 @@ class InputField extends StatelessWidget {
         color: CosmixColor.lighterWhite,
       ),
       child: TextField(
+        onChanged: onChanged != null ? (value) => onChanged!(value) : null,
         controller: controller,
         obscureText: obscureText,
         style: TextStyle(
           color: color, // Change the text color here
-          fontSize: 16.0,
+          fontSize: 15.0,
         ),
         decoration: InputDecoration(
+          fillColor: fillColor,
           prefixIcon: leadingIcon != null
               ? Icon(
                   leadingIcon?.icon,
@@ -43,7 +49,7 @@ class InputField extends StatelessWidget {
           floatingLabelStyle: const TextStyle(
               color: CosmixColor.lighterWhite,
               fontWeight: FontWeight.bold,
-              fontSize: 16),
+              fontSize: 15),
           enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12),
               borderSide: const BorderSide(color: CosmixColor.lightWhite)),

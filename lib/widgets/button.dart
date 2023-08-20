@@ -9,6 +9,7 @@ class Button extends StatelessWidget {
   final double height;
   final double width;
   final double fontSize;
+  final FontWeight fontWeight;
   final double iconSize;
   final Color borderColor;
   final Color color;
@@ -27,6 +28,7 @@ class Button extends StatelessWidget {
     this.height = 55,
     this.width = double.infinity,
     this.fontSize = 16,
+    this.fontWeight = FontWeight.normal,
     this.iconSize = 21,
     this.borderColor = CosmixColor.lightWhite,
     this.color = CosmixColor.white,
@@ -53,31 +55,21 @@ class Button extends StatelessWidget {
             decoration: ShapeDecoration(
               gradient: LinearGradient(
                 colors: type == ButtonType.primary
-                    ? [
-                        CosmixColor.white.withOpacity(0.3),
-                        CosmixColor.white.withOpacity(0.1),
-                      ]
+                    ? CosmixColor.lightGradient
                     : type == ButtonType.primaryColor
-                        ? [
-                            CosmixColor.primaryColor.withOpacity(0.8),
-                            CosmixColor.primaryColor.withOpacity(0.4),
-                          ]
+                        ? CosmixColor.primaryColorGradient
                         : type == ButtonType.secondary
-                            ? [
-                                CosmixColor.black.withOpacity(0.4),
-                                CosmixColor.black.withOpacity(0.2),
-                              ]
-                            : [
-                                Colors.transparent,
-                                Colors.transparent,
-                              ],
+                            ? CosmixColor.darkGradient
+                            : CosmixColor.transparentGradient,
               ),
               shape: RoundedRectangleBorder(
-                side: BorderSide(
-                      width: 1,
-                      strokeAlign: BorderSide.strokeAlignCenter,
-                      color: borderColor,
-                    ),
+                side: showBorder
+                    ? BorderSide(
+                        width: 1,
+                        strokeAlign: BorderSide.strokeAlignCenter,
+                        color: borderColor,
+                      )
+                    : BorderSide.none,
                 borderRadius: BorderRadius.circular(16),
               ),
               shadows: [
@@ -96,19 +88,16 @@ class Button extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                leftIcon != null
-                    ? SizedBox(
-                        width: 24,
-                        height: 24,
-                        child: Icon(
-                          leftIcon?.icon,
-                          color: color,
-                          size: 24,
-                        ),
-                      )
-                    : const SizedBox(
-                        width: 0,
-                      ),
+                if (leftIcon != null)
+                  SizedBox(
+                    width: iconSize + 3,
+                    height: iconSize + 3,
+                    child: Icon(
+                      leftIcon?.icon,
+                      color: color,
+                      size: iconSize,
+                    ),
+                  ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8),
                   child: Text(
@@ -117,25 +106,21 @@ class Button extends StatelessWidget {
                       color: type == ButtonType.disabled
                           ? CosmixColor.lighterWhite
                           : color,
-                      fontSize: 20,
-                      fontFamily: 'Gilroy-SemiBold',
-                      fontWeight: FontWeight.w400,
+                      fontSize: fontSize,
+                      fontWeight: fontWeight,
                     ),
                   ),
                 ),
-                rightIcon != null
-                    ? SizedBox(
-                        width: 24,
-                        height: 24,
-                        child: Icon(
-                          rightIcon?.icon,
-                          color: color,
-                          size: 24,
-                        ),
-                      )
-                    : const SizedBox(
-                        width: 0,
-                      ),
+                if (rightIcon != null)
+                  SizedBox(
+                    width: iconSize + 3,
+                    height: iconSize + 3,
+                    child: Icon(
+                      rightIcon?.icon,
+                      color: color,
+                      size: iconSize,
+                    ),
+                  ),
               ],
             ),
           ),

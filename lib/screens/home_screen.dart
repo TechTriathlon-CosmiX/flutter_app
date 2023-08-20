@@ -1,21 +1,19 @@
-import 'package:CosmiX/screens/buttons_screen.dart';
-import 'package:CosmiX/screens/inputs_screen.dart';
 import 'package:CosmiX/theme/colors.dart';
 import 'package:CosmiX/screens/booking_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../widgets/button.dart';
+import 'buttons_screen.dart';
 import 'cards_screen.dart';
+import 'inputs_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   @override
-  Widget build(context) {
+  Widget build(BuildContext context) {
     return Scaffold(
-      // Use Obx(()=> to update Text() whenever count is changed.
-      appBar: AppBar(title: Text("CosmiX App Components")),
       backgroundColor: CosmixColor.bgColor,
       // Replace the 8 lines Navigator.push by a simple Get.to(). You don't need context
       body: Padding(
