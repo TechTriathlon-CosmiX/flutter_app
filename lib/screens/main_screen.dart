@@ -46,7 +46,7 @@ class MainScreen extends StatelessWidget {
         topRight: Radius.circular(24.0),
       ),
       child: BottomAppBar(
-        color: Colors.black.withOpacity(0.8),
+        color: Colors.black.withOpacity(0.1),
         height: 80,
         elevation: 0,
         child: Stack(
