@@ -21,6 +21,7 @@ class GlassButton extends StatelessWidget {
   final double blur;
   final bool showShadow;
   final double borderRadius;
+  final bool isLoading;
 
   const GlassButton({
     super.key,
@@ -40,6 +41,7 @@ class GlassButton extends StatelessWidget {
     this.blur = 8,
     this.showShadow = true,
     this.borderRadius = 16,
+    this.isLoading = false,
   });
 
   @override
@@ -70,7 +72,7 @@ class GlassButton extends StatelessWidget {
       width: width,
       height: height,
       child: ElevatedButton(
-        onPressed: onPressed,
+        onPressed: isLoading ? null : onPressed,
         style: ElevatedButton.styleFrom(
           backgroundColor: Colors.transparent,
           padding: const EdgeInsets.all(0),
@@ -99,43 +101,54 @@ class GlassButton extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              if (leftIcon != null)
-                SizedBox(
-                  width: iconSize + 3,
-                  height: iconSize + 3,
-                  child: Icon(
-                    leftIcon?.icon,
-                    color: color,
-                    size: iconSize,
-                  ),
-                ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8),
-                child: Text(
-                  buttonText,
-                  style: TextStyle(
-                    letterSpacing: 0,
-                    color: type == ButtonType.disabled
-                        ? CosmixColor.lighterWhite
-                        : color,
-                    fontSize: fontSize,
-                    fontFamily: 'Gilroy-SemiBold',
-                    fontWeight: fontWeight,
-                  ),
-                ),
-              ),
-              if (rightIcon != null)
-                SizedBox(
-                  width: iconSize + 3,
-                  height: iconSize + 3,
-                  child: Icon(
-                    rightIcon?.icon,
-                    color: color,
-                    size: iconSize,
-                  ),
-                ),
-            ],
+            children: isLoading
+                ? [
+                    SizedBox(
+                      width: 20,
+                      height: 20,
+                      child: CircularProgressIndicator(
+                        strokeWidth: 3,
+                        color: CosmixColor.white.withOpacity(0.8),
+                      ),
+                    )
+                  ]
+                : [
+                    if (leftIcon != null)
+                      SizedBox(
+                        width: iconSize + 3,
+                        height: iconSize + 3,
+                        child: Icon(
+                          leftIcon?.icon,
+                          color: color,
+                          size: iconSize,
+                        ),
+                      ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8),
+                      child: Text(
+                        buttonText,
+                        style: TextStyle(
+                          letterSpacing: 0,
+                          color: type == ButtonType.disabled
+                              ? CosmixColor.lighterWhite
+                              : color,
+                          fontSize: fontSize,
+                          fontFamily: 'Gilroy-SemiBold',
+                          fontWeight: fontWeight,
+                        ),
+                      ),
+                    ),
+                    if (rightIcon != null)
+                      SizedBox(
+                        width: iconSize + 3,
+                        height: iconSize + 3,
+                        child: Icon(
+                          rightIcon?.icon,
+                          color: color,
+                          size: iconSize,
+                        ),
+                      ),
+                  ],
           ),
         ),
       ),

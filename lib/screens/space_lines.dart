@@ -22,7 +22,7 @@ class SpaceLines extends StatelessWidget {
       appBar: AppBar(title: Text("Space Lines")),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 36.0),
+          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 24.0),
           child: Column(
             children: [
               ListView.builder(

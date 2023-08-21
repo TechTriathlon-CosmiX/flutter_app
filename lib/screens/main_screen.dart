@@ -12,9 +12,20 @@ class MainScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: CosmixColor.bgColor,
+      backgroundColor: Colors.transparent,
       bottomNavigationBar: _bottomNavBar(context),
-      body: _mainBody(),
+      body: DecoratedBox(
+          decoration: const BoxDecoration(
+            // gradient: LinearGradient(
+            //   begin: Alignment.topLeft,
+            //   end: Alignment.bottomRight,
+            //   colors: CosmixColor.darkGradient,
+            // ),
+            image: DecorationImage(
+                image: AssetImage("assets/images/backgrounds/bg-3.webp"),
+                fit: BoxFit.cover),
+          ),
+          child: _mainBody()),
     );
   }
 
@@ -80,7 +91,7 @@ class MainScreen extends StatelessWidget {
             Container(
               alignment: Alignment.bottomCenter,
               color: Colors.transparent,
-              padding: const EdgeInsets.only(left: 42, right: 42, top: 21),
+              padding: const EdgeInsets.only(left: 36, right: 36, top: 21),
               child: Obx(
                 () => Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -140,7 +151,7 @@ class MainScreen extends StatelessWidget {
                   color: _controller.currentPage == page
                       ? CosmixColor.primaryColor
                       : CosmixColor.grey,
-                  fontSize: 15,
+                  fontSize: 13,
                   fontWeight:
                       _controller.currentPage == page ? FontWeight.w600 : null),
             ),

@@ -1,3 +1,4 @@
+import 'package:CosmiX/controllers/login_controller.dart';
 import 'package:CosmiX/screens/main_screen.dart';
 import 'package:CosmiX/screens/register_screen.dart';
 import 'package:CosmiX/widgets/button.dart';
@@ -10,15 +11,8 @@ import 'package:get/get.dart';
 
 import '../theme/colors.dart';
 
-class LoginScreen extends StatefulWidget {
+class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
-
-  @override
-  State<LoginScreen> createState() => _LoginScreenState();
-}
-
-class _LoginScreenState extends State<LoginScreen> {
-  final TextEditingController emailController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -74,6 +68,8 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   Widget _mainContent() {
+    LoginController controller = Get.put(LoginController());
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 24.0),
       child: Center(
@@ -119,12 +115,13 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     InputField(
                         labelText: "Email",
-                        controller: emailController,
+                        controller: controller.emailController,
                         leadingIcon: const Icon(Icons.person_2_outlined)),
                     const SizedBox(height: 24.0),
                     InputField(
+                        obscureText: true,
                         labelText: "Password",
-                        controller: emailController,
+                        controller: controller.passwordController,
                         leadingIcon: const Icon(Icons.lock_outline_rounded)),
                     const SizedBox(height: 36.0),
                     Row(
@@ -153,18 +150,35 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
             ),
             const SizedBox(height: 24.0),
-            GlassButton(
-              onPressed: () {
-                Get.to(() => MainScreen());
-              },
-              buttonText: "Login",
-              type: ButtonType.primaryColor,
-              fontSize: 18,
-              fontWeight: FontWeight.w600,
-              rightIcon: const Icon(
-                Icons.arrow_forward_ios_rounded,
-                color: Colors.white,
-                size: 18,
+            Obx(
+              () => GlassButton(
+                onPressed: () {
+                  controller.login().then((value) {
+                    if (value) {
+                      Get.offAll(() => MainScreen());
+                      Get.snackbar(
+                          icon: const Icon(
+                            Icons.check_circle,
+                            size: 26,
+                            color: CosmixColor.primaryColor,
+                          ),
+                          shouldIconPulse: true,
+                          "Success",
+                          "Welcome to CosmiX",
+                          colorText: CosmixColor.white);
+                    }
+                  });
+                },
+                isLoading: controller.isLoginLoading.value,
+                buttonText: "Login",
+                type: ButtonType.primaryColor,
+                fontSize: 18,
+                fontWeight: FontWeight.w600,
+                rightIcon: const Icon(
+                  Icons.arrow_forward_ios_rounded,
+                  color: Colors.white,
+                  size: 18,
+                ),
               ),
             ),
           ],

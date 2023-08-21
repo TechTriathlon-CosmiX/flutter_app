@@ -18,11 +18,14 @@ class MyTrips extends StatelessWidget {
     final List<Memory> memories = tripsController.memories;
 
     return Scaffold(
-      backgroundColor: CosmixColor.bgColor,
-      appBar: AppBar(title: const Text("My Trips")),
+      backgroundColor: Colors.black.withOpacity(0.5),
+      appBar: AppBar(
+        title: const Text("My Trips"),
+        leading: SizedBox(),
+      ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 36.0),
+          padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 16.0),
           child: Column(
             children: [
               const SizedBox(

@@ -1,8 +1,2 @@
-// SnackBar content
-const successMessage = "Success";
-const warningMessage = "Warning";
-const noInternetMessage = "Please check your internet connection";
-const errorMessage = "Something went wrong";
-
 // API related data
-const baseUrl = "http://localhost:3001/api/";
+const baseUrl = "http://20.239.181.94:3001/api/";

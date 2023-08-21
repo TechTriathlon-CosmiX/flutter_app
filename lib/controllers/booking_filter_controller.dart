@@ -1,4 +1,3 @@
-import 'package:CosmiX/models/flight.dart';
 import 'package:CosmiX/models/planet.dart';
 import 'package:CosmiX/services/api_service.dart';
 import 'package:CosmiX/widgets/bottom_sheet_panel.dart';
@@ -19,35 +18,40 @@ class BookingFilterController extends GetxController {
   @override // fetch possible travel locations from back end on initialization
   void onInit() {
     super.onInit();
-    fetchTravelLocations();
+    // fetchTravelLocations();
   }
 
-  Future<void> fetchTravelLocations() async {
-    try {
-      planets = await _apiService.fetchAllPlanets();
-    } catch (e) {
-      // Handle error, e.g., show a toast or error message
-    }
-  }
+  // Future<void> fetchTravelLocations() async {
+  //   try {
+  //     planets = await _apiService.fetchAllPlanets();
+  //   } catch (e) {
+  //     // Handle error, e.g., show a toast or error message
+  //   }
+  // }
 
   List<Planet> planets = [
-    Planet(planetId: '1',
-      planetName: 'Venus',
-      planetImage: 'venus',
-      planetDescription: 'E Space launch #2 - CA, USA'),
-    Planet(planetId: '2',
-      planetName: 'Earth',
-      planetImage: 'earth',
-      planetDescription: 'E Space launch #2 - CA, USA'),
-    Planet(planetId: '3',
-      planetName: 'Mars',
-      planetImage: 'mars',
-      planetDescription: 'E Space launch #2 - CA, USA'),
-    Planet(planetId: '4',
-      planetName: 'Jupiter',
-      planetImage: 'jupiter',
-      planetDescription: 'E Space launch #2 - CA, USA'),
-    Planet(planetId: '5',
+    Planet(
+        planetId: '1',
+        planetName: 'Venus',
+        planetImage: 'venus',
+        planetDescription: 'E Space launch #2 - CA, USA'),
+    Planet(
+        planetId: '2',
+        planetName: 'Earth',
+        planetImage: 'earth',
+        planetDescription: 'E Space launch #2 - CA, USA'),
+    Planet(
+        planetId: '3',
+        planetName: 'Mars',
+        planetImage: 'mars',
+        planetDescription: 'E Space launch #2 - CA, USA'),
+    Planet(
+        planetId: '4',
+        planetName: 'Jupiter',
+        planetImage: 'jupiter',
+        planetDescription: 'E Space launch #2 - CA, USA'),
+    Planet(
+        planetId: '5',
         planetName: 'Saturn',
         planetImage: 'saturn',
         planetDescription: 'E Space launch #2 - CA, USA'),
@@ -88,34 +92,34 @@ class BookingFilterController extends GetxController {
   var childrenCount = 0.obs;
   var infantCount = 0.obs;
 
-  Future<bool> makeBooking() async {
-    try {
-      bool success = await _apiService.postBooking(
-        // Provide the required parameters
-        placedTime: DateTime.now(),
-        adultCount: adultCount.value,
-        childCount: childrenCount.value,
-        additionalRemarks: 'Additional remarks here',
-        additionalLuggageCapacity: 2,
-        additionalLuggageCharge: 20.0,
-        netValue: 250.0,
-        flightId: selectedFlightId!.value,
-        cabinIds: selectedCabinIds!.value,
-        paymentAmount: 300.0,
-      );
-
-      if (success) {
-        // Handle success
-        return true;
-      } else {
-        // Handle failure
-        return false;
-      }
-    } catch (error) {
-      // Handle exceptions or errors
-      return false;
-    }
-  }
+  // Future<bool> makeBooking() async {
+  //   try {
+  //     bool success = await _apiService.postBooking(
+  //       // Provide the required parameters
+  //       placedTime: DateTime.now(),
+  //       adultCount: adultCount.value,
+  //       childCount: childrenCount.value,
+  //       additionalRemarks: 'Additional remarks here',
+  //       additionalLuggageCapacity: 2,
+  //       additionalLuggageCharge: 20.0,
+  //       netValue: 250.0,
+  //       flightId: selectedFlightId!.value,
+  //       cabinIds: selectedCabinIds!.value,
+  //       paymentAmount: 300.0,
+  //     );
+  //
+  //     if (success) {
+  //       // Handle success
+  //       return true;
+  //     } else {
+  //       // Handle failure
+  //       return false;
+  //     }
+  //   } catch (error) {
+  //     // Handle exceptions or errors
+  //     return false;
+  //   }
+  // }
 
   void updateCounts(PassengerType type, int value) {
     switch (type) {

@@ -17,32 +17,35 @@ class SearchAndFilterScreen extends StatelessWidget {
   Widget build(context) {
     return Scaffold(
       // Use Obx(()=> to update Text() whenever count is changed.
-      appBar: AppBar(title: const Text("Search Filter")),
-      backgroundColor: CosmixColor.bgColor,
+      appBar: AppBar(
+        title: const Text("Search Flights"),
+        leading: SizedBox(),
+      ),
+      backgroundColor: CosmixColor.lightestBlack,
       // Replace the 8 lines Navigator.push by a simple Get.to(). You don't need context
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 32.0),
+        padding: const EdgeInsets.only(left: 16.0, right: 16.0, top: 20.0),
         child: SingleChildScrollView(
           child: Center(
               child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               GlassCard(
-                  height: 500,
+                  height: 428,
                   borderRadius: 16,
                   type: CardType.dark,
                   child: Padding(
                     padding: const EdgeInsets.symmetric(
-                        horizontal: 24.0, vertical: 26.0),
+                        horizontal: 24.0, vertical: 24.0),
                     child: SearchFilter(),
                   )),
-              const SizedBox(height: 24.0),
+              const SizedBox(height: 20.0),
               GlassButton(
                   type: ButtonType.primary,
                   fontSize: 17,
                   buttonText: "Advanced filters",
                   onPressed: () => Get.back()),
-              const SizedBox(height: 24.0),
+              const SizedBox(height: 20.0),
               GlassButton(
                   type: ButtonType.primaryColor,
                   leftIcon: const Icon(Icons.search_rounded),

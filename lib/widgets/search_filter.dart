@@ -28,6 +28,7 @@ class SearchFilter extends StatelessWidget {
       Rx<String>? departureTime = _bookingFilterController.departureTimeAsText;
       Rx<String>? arrivalDate = _bookingFilterController.arrivalDateAsText;
       Rx<String>? arrivalTime = _bookingFilterController.arrivalTimeAsText;
+
       return Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
@@ -129,7 +130,6 @@ class SearchFilter extends StatelessWidget {
               ),
             ],
           ),
-          const SizedBox(height: 16),
           Column(
             children: [
               PassengerInputRow(
@@ -139,10 +139,6 @@ class SearchFilter extends StatelessWidget {
               ), PassengerInputRow(
                 type: PassengerType.children,
                 count: _bookingFilterController.childrenCount,
-                controller: _bookingFilterController,
-              ), PassengerInputRow(
-                type: PassengerType.infant,
-                count: _bookingFilterController.infantCount,
                 controller: _bookingFilterController,
               ),
             ],
